@@ -1,0 +1,13 @@
+Backrooms game (jeu textuel)
+
+Level 1 : Lobby
+ - Safe
+ - Entities : 
+   - NPC : talking npc or friends (like they follow you in your journey)
+   - Mobs : entities for level 1 of backrooms's lore
+ - Desc :
+   You wake up in an endless maze of yellow-tinted rooms, dimly lit by flickering fluorescent lights that hum with an unbearable buzz. The wallpaper is old and peeling, the carpet is damp beneath your feet, and the air smells faintly of mold and electricity. Every room looks the same, yet none are truly identical. You walk straight, turn around, retrace your steps - only to find yourself somewhere new. The rules of space don't seem to apply here.
+ - Exits :
+   - to level 1
+   - to level -1
+
