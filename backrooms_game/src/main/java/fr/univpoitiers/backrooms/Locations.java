@@ -2,10 +2,10 @@ package fr.univpoitiers.backrooms;
 
 public class Locations {
 
-	private int Description;
+	private final String Description;
 
 	public void getDescription() {
-		// TODO - implement Locations.getDescription
+		System.out.println(this.Description);
 		throw new UnsupportedOperationException();
 	}
 
@@ -13,8 +13,8 @@ public class Locations {
 	 * 
 	 * @param Description
 	 */
-	public Locations(int Description) {
-		// TODO - implement Locations.Locations
+	public Locations(String Description) {
+		this.Description = Description;
 		throw new UnsupportedOperationException();
 	}
 
