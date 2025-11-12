@@ -14,8 +14,7 @@ public abstract class Entity {
 	private String name;
 
 	public int getPV() {
-		// TODO - implement Entity.getPV
-		throw new UnsupportedOperationException();
+		return this.PV;
 	}
 
 	/**
@@ -23,7 +22,7 @@ public abstract class Entity {
 	 * @param PV
 	 */
 	public void setPV(int PV) {
-		// TODO - implement Entity.setPV
+		this.PV = PV;
 		throw new UnsupportedOperationException();
 	}
 
