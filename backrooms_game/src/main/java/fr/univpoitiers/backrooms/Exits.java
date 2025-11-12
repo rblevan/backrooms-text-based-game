@@ -3,6 +3,7 @@ package fr.univpoitiers.backrooms;
 public class Exits {
 
 	private int Type;
+    private Locations room;
 
 	public void getType() {
 		// TODO - implement Exits.getType
