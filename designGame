@@ -1,13 +1,43 @@
 Backrooms game (jeu textuel)
 
-Level 1 : Lobby
+Level -1 : Grey corridor
+
+Level 0 : Lobby
  - Safe
  - Entities : 
-   - NPC : talking npc or friends (like they follow you in your journey)
+   - friendly NPC : talking npc or friends (like they follow you in your journey)
    - Mobs : entities for level 1 of backrooms's lore
  - Desc :
    You wake up in an endless maze of yellow-tinted rooms, dimly lit by flickering fluorescent lights that hum with an unbearable buzz. The wallpaper is old and peeling, the carpet is damp beneath your feet, and the air smells faintly of mold and electricity. Every room looks the same, yet none are truly identical. You walk straight, turn around, retrace your steps - only to find yourself somewhere new. The rules of space don't seem to apply here.
  - Exits :
    - to level 1
    - to level -1
+
+
+Level 1 : Living area
+ - Safe
+ - Entities :
+   - friendly NPC
+   - Mobs :
+     - Facelings (entity 9, human without a face, can be dangerous, unpredictable)
+     - Clumps (entity 5, massive clusters of human limbs writhing and spreading out in all directions, attack everybody) 
+     - Hounds (entity 8, Humanoid beings with canine features. They move on all fours, have long bony limbs with sharp claws, and large mouths filled with sharp teeth. Their eyes are pure, milky white, lacking irises or pupils, hostile if he see a human)
+     - Deathmoths (entity 4, These entities bear a striking resemblance to butterflies of the Acherontia genus, but they are distinguished by their abnormally large size, don't seems degerous) 
+ - Desc : 
+   The maddening hum of the yellow wallpaper has faded. You are somewhere else.
+The air is cold and smells of damp concrete and... something strangely sweet. Almonds.
+You are in a vast warehouse. High above, industrial fluorescent lights cast a harsh, reliable glow. Unlike the flicker of before, the power here is constant. But the floor is wet. Pools of milky water steam gently, releasing a thick, low-hanging fog that clings to the ground. It obscures everything. Abandoned forklifts sit like sleeping beasts in the mist.
+This is Level 1. They call it the 'Habitable Zone'.
+The reliable electricity means you are not the first. Others are here, surviving in groups, hidden by the same fog that hides you. You can hear distant echoes, but the mist muffles the sound.
+Stairwells and dark corridors branch off into the haze, leading to different zones.
+ - Entrances :
+   - by level 0
+ - Exits : 
+   - to level 0
+   - to level 2
+
+
+Level 2 : Pipe Dreams
+ - Unsafe
+ 
 
