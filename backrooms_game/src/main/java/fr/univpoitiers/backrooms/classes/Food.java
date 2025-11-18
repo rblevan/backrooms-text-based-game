@@ -1,4 +1,6 @@
-package fr.univpoitiers.backrooms;
+package fr.univpoitiers.backrooms.classes;
+
+import fr.univpoitiers.backrooms.interfaces.Item;
 
 public class Food implements Item {
     private String name;

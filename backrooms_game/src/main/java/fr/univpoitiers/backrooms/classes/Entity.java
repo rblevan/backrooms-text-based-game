@@ -1,4 +1,4 @@
-package fr.univpoitiers.backrooms;
+package fr.univpoitiers.backrooms.classes;
 
 public abstract class Entity {
     private static final int DEFAULT_HP = 100;

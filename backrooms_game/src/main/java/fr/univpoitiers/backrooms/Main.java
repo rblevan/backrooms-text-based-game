@@ -1,5 +1,8 @@
 package fr.univpoitiers.backrooms;
 
+import fr.univpoitiers.backrooms.classes.Characters;
+import fr.univpoitiers.backrooms.classes.Locations;
+
 public class Main
 {
     public static void main( String[] args )

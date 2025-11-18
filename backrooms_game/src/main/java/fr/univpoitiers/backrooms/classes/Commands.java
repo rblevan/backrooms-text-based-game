@@ -1,4 +1,4 @@
-package fr.univpoitiers.backrooms;
+package fr.univpoitiers.backrooms.classes;
 
 import java.util.Arrays;
 import java.util.List;
@@ -45,8 +45,6 @@ public class Commands {
         // Check if it's a known command
         if (!CommandWords.isCommand(commandWord)) {
             // Check if it's a special ability the player has learned
-                return executeSpecialCommand(commandWord, args);
-            }
             return "Unknown command. Type HELP for a list of commands.";
         }
 
@@ -56,8 +54,8 @@ public class Commands {
                 return go(args);
             case "HELP":
                 return help(args);
-            case "LOOK":
-                return look(args);
+            /*case "LOOK":
+                return look(args);*/ // todo
             case "ATTACK":
                 return attack(args);
             case "TAKE":
@@ -77,13 +75,15 @@ public class Commands {
         if (args.length == 0) {
             return "Go where? Specify a direction or a place.";
         }
-        return //TODO : Go to place
+        return ""; //TODO : Go to place
     }
 
     public String help(String[] args) {
         return "Available commands are: " + commandList;
     }
 
+
+    /*
     public String look(String[] args) {
         if (args.length == 0) {
             return this.Locations.getDescription();
@@ -91,6 +91,8 @@ public class Commands {
         // TODO: LOOK [argument]: describe a specific object in the room
         return "You look at the object: " + args[0];
     }
+    */
+
 
     public String attack(String[] args) {
         if (args.length == 0) {
@@ -105,7 +107,7 @@ public class Commands {
             return "Take what?";
         }
         // TODO: Take logic
-        return "You pick up " + args[0] + ;
+        return "You pick up " + args[0] ; // todo
     }
 
     public String use(String[] args) {
@@ -126,6 +128,7 @@ public class Commands {
 
     public String quit(String[] args) {
         //TODO : quit logic
+        return "";
         }
-
 }
+

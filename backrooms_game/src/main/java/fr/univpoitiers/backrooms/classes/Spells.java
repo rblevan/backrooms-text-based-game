@@ -1,6 +1,8 @@
-package fr.univpoitiers.backrooms;
+package fr.univpoitiers.backrooms.classes;
 
-public class Spells extends Item {
+import fr.univpoitiers.backrooms.interfaces.Item;
+
+public class Spells implements Item {
 
 	private String Action;
 

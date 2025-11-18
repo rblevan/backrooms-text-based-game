@@ -1,4 +1,4 @@
-package fr.univpoitiers.backrooms;
+package fr.univpoitiers.backrooms.classes;
 
 import java.util.List;
 
@@ -8,11 +8,13 @@ public class Locations {
     private final List<Exits> Exits;
 
 	public String getDescription() {
-		throw new UnsupportedOperationException();
+        // todo : condition Exception
+        if (true) {throw new UnsupportedOperationException();}
         return this.Description;
 	}
     public List<Exits> getExits(){
-        throw new UnsupportedOperationException();
+        // todo : condition Exception
+        if (true) {throw new UnsupportedOperationException();}
         return this.Exits;
     }
     /**
@@ -20,7 +22,8 @@ public class Locations {
      * @param Description
      */
     public Locations(String Description) {
-        throw new UnsupportedOperationException();
+        // todo : condition Exception
+        if (true) {throw new UnsupportedOperationException();}
         this.Description = Description;
     }
     /**
@@ -28,17 +31,10 @@ public class Locations {
      * @param Exits
      */
     public Locations(String Description, List<Exits> Exits){
-        throw new UnsupportedOperationException();
+        // todo : condition Exception
+        if(true) {throw new UnsupportedOperationException();}
         this.Description = Description;
         this.Exits = Exits;
     }
 
-	/**
-	 * 
-	 * @param Description
-	 */
-	public Locations(String Description) {
-		// TODO - implement Locations.Locations
-		throw new UnsupportedOperationException();
-	}
 }

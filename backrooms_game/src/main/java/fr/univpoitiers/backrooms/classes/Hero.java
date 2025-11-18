@@ -1,4 +1,4 @@
-package fr.univpoitiers.backrooms;
+package fr.univpoitiers.backrooms.classes;
 
 public class Hero extends Entity {
     public Hero(String description, String name) {

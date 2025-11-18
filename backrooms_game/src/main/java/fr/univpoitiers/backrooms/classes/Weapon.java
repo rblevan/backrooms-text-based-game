@@ -1,4 +1,4 @@
-package fr.univpoitiers.backrooms;
+package fr.univpoitiers.backrooms.classes;
 
 public class Weapon {
     private String name;

@@ -1,4 +1,4 @@
-package fr.univpoitiers.backrooms;
+package fr.univpoitiers.backrooms.classes;
 
 public class Characters extends Entity {
     public Characters(String description, String name) {
