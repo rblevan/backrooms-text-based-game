@@ -1,89 +1,75 @@
 package fr.univpoitiers.backrooms;
 
 public abstract class Entity {
+    private static final int DEFAULT_HP = 100;
+    private static final int DEFAULT_ATTACK = 30;
 
-	private int PV = 100;
-	/**
-	 * description de l'entité
-	 */
+	private int PV;
 	private String description;
-	/**
-	 * valeur d'attaque
-	 */
-	private int attack = 10;
+	private int attack;
 	private String name;
 
-	public int getPV() {
-		return this.PV;
-	}
+    public Entity(String description, String name) {
+        if (description == null || name == null) {
+            throw new UnsupportedOperationException("Entity(2) error : Parameters cannot be null");
+        }
+        this.PV = DEFAULT_HP;
+        this.name = name;
+        this.attack = DEFAULT_ATTACK;
+        this.description = description;
+    }
 
-	/**
-	 * 
-	 * @param PV
-	 */
-	public void setPV(int PV) {
-		this.PV = PV;
-		throw new UnsupportedOperationException();
-	}
+    public Entity(int PV, String name, int attack, String description) {
+        if (description == null || name == null || PV < 0 || attack < 0) {
+            throw new UnsupportedOperationException("Entity(4) error : Parameters cannot be null or negative");
+        }
+        this.PV = PV;
+        this.name = name;
+        this.attack = attack;
+        this.description = description;
+    }
 
-	public String getDescription() {
-		return this.description;
-	}
+    public int getPV() {
+        return this.PV;
+    }
 
-	/**
-	 * 
-	 * @param description
-	 */
+    public String getName() {
+        return this.name;
+    }
+
+    public int getAttack() {
+        return this.attack;
+    }
+
+    public String getDescription() {
+        return this.description;
+    }
+
 	public void setDescription(String description) {
+        if (description == null) {
+            throw new UnsupportedOperationException("Description cannot be null");
+        }
 		this.description = description;
 	}
 
-	public int getAttack() {
-		return this.attack;
-	}
-
-	/**
-	 * 
-	 * @param attack
-	 */
 	public void setAttack(int attack) {
+        if (this.attack < 0){
+            throw new UnsupportedOperationException("Value attack cannot be negative");
+        }
 		this.attack = attack;
 	}
 
-	public String getName() {
-		return this.name;
+	public void setName(String name) {
+        if (this.name == null) {
+            throw new UnsupportedOperationException("Name cannot be null");
+        }
+		this.name = name;
 	}
 
-	/**
-	 * 
-	 * @param name
-	 */
-	public void setName(String name) {this.name = name;}
-
-	/**
-	 * 
-	 * @param description
-	 * @param name
-	 */
-	public Entity(String description, String name) {
-		this.description = description;
-        this.name = name;
-		throw new UnsupportedOperationException();
-	}
-
-	/**
-	 * 
-	 * @param PV
-	 * @param description
-	 * @param attack
-	 * @param name
-	 */
-	public Entity(int PV, String description, int attack, String name) {
-		this.PV = PV;
-        this.description = description;
-        this.attack = attack;
-        this.name = name;
-		throw new UnsupportedOperationException();
-	}
-
+    public void setPV(int PV) {
+        if (this.PV < 0) {
+            throw new UnsupportedOperationException("PV cannot be negative");
+        }
+        this.PV = PV;
+    }
 }

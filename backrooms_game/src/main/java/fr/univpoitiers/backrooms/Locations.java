@@ -1,9 +1,11 @@
 package fr.univpoitiers.backrooms;
 
+import java.util.List;
+
 public class Locations {
 
-	private String Description;
-    protected final List<Exits> Exits ;
+	private final String Description;
+    private final List<Exits> Exits;
 
 	public String getDescription() {
 		throw new UnsupportedOperationException();
@@ -31,5 +33,12 @@ public class Locations {
         this.Exits = Exits;
     }
 
-
+	/**
+	 * 
+	 * @param Description
+	 */
+	public Locations(String Description) {
+		// TODO - implement Locations.Locations
+		throw new UnsupportedOperationException();
+	}
 }

@@ -1,6 +1,28 @@
 Backrooms game (jeu textuel)
 
 Level -1 : Grey corridor
+ - Unsafe
+ - Entities :
+   - Mobs :
+     - Facelings (c.f level 1)
+     - Hounds (c.f level 1)
+     - Skin-Stealers (c.f level 2)
+     - Nutrisha (entity exclusive level -1, Reports vary wildly. It is described as a tall, black, light-absorbing figure. Some witnesses claim it is a slender humanoid; others, a large, shadowy spider. It is unknown if it has a true form, passive unless you provock him)
+ - Desc :
+   You have entered a long, straight hallway. The air is immediately glacial, chilling you to the bone. It holds at a constant, freezing 0°C (32°F).
+The walls are hard concrete, but the floor is covered by a strange, old carpet that muffles your footsteps. A faint, persistent humming sound buzzes from the various fluorescent lights on the ceiling. Some flicker erratically, while others have been completely shattered, leaving a crunch of fine glass on the floor.
+This place is known as "The Negative Hub."
+Both sides of the corridor are lined with an endless series of wooden doors, spaced only a few feet apart. Each one is a potential exit, but be warned: they are far more likely to lead to other negative Levels than to safety.
+As you walk, you notice something deeply unsettling: the wallpaper's color and pattern seem to shift and change as you move past it.
+The walls are sparsely decorated with items that feel wrong: blank paintings, inoperative fire alarms, and broken exit signs. These objects are unstable. They have been known to suddenly float, teleport, or even explode without warning.
+You must be cautious. From time to time, you may hear sounds from behind one of the doors: a distinct knocking, a low growl, or scratching. If this occurs, do not, under any circumstances, open the door. Your only option is to get away from it as fast as possible.
+ - Entrances :
+   - by level 0 (no-clipping)
+ - Exits :
+   - to level 1 (a wooden door)
+   - to level -1 (a wooden door)
+   - to level 3 (a wooden door)
+
 
 Level 0 : Lobby
  - Safe
@@ -9,9 +31,14 @@ Level 0 : Lobby
    - Mobs : entities for level 1 of backrooms's lore
  - Desc :
    You wake up in an endless maze of yellow-tinted rooms, dimly lit by flickering fluorescent lights that hum with an unbearable buzz. The wallpaper is old and peeling, the carpet is damp beneath your feet, and the air smells faintly of mold and electricity. Every room looks the same, yet none are truly identical. You walk straight, turn around, retrace your steps - only to find yourself somewhere new. The rules of space don't seem to apply here.
+ - Entrances :
+   - First level to be in, by no-clip through reality
+   - by level 1 (a fire exit)
+   - by level -1 (a wooden door)
  - Exits :
-   - to level 1
-   - to level -1
+   - to level 1 (staircase cage)
+   - to level -1 (no-clipping)
+   - to real world (golden door)
 
 
 Level 1 : Living area
@@ -31,13 +58,137 @@ This is Level 1. They call it the 'Habitable Zone'.
 The reliable electricity means you are not the first. Others are here, surviving in groups, hidden by the same fog that hides you. You can hear distant echoes, but the mist muffles the sound.
 Stairwells and dark corridors branch off into the haze, leading to different zones.
  - Entrances :
-   - by level 0
+   - by level 0 (staircase cage)
  - Exits : 
-   - to level 0
-   - to level 2
+   - to level 0 (a defective door)
+   - to level 2 (dark and narrow corridor with a heavy-duty maintenance door)
+   - to real world (golden door)
 
 
 Level 2 : Pipe Dreams
  - Unsafe
+ - Entities :
+   - Mobs :
+     - Clumps (c.f level 1)
+     - Hounds (c.f level 1)
+     - Smilers (entity 3, they are intelligent and highly malevolent, natural predator, they are a smile in dark space with no body, dangerous)
+     - Skin-Stealers (entity 10, do not possess any one "true" apparearance they used instead a skin they have stole previously, dangerous)
+ - Desc :
+   You have emerged into a suffocating, industrial labyrinth.
+The air here is thick, heavy, and incredibly hot. The humidity clings to your skin instantly. You are surrounded by a vast network of concrete maintenance shafts and narrow utility tunnels. Infinite miles of rusting pipes line the walls and ceilings, hissing with steam and dripping unknown fluids.
+Unlike the shifting chaos of previous levels, the geometry here seems stable. The walls do not move while you look at them, giving you a rare chance to map your surroundings. However, as you venture deeper, the layout becomes increasingly hostile. The corridors twist unpredictably, forcing you to squeeze through tight spaces or navigate steep, dangerous inclines and sudden drops.
+In the darker sections, visibility is poor, and the heat becomes unbearable. Strangely, this intensity seems to be a blessing in disguise: you are currently alone. It seems even the entities of the Backrooms cannot tolerate this extreme heat and humidity.
+Watch your step. The fall might kill you before the heat does.
+ - Entrances :
+   - by level 1 (a heavy-duty maintenance door)
+   - by level 8 (entering vents that are sometimes found in level 8)
+ - Exits :
+   - to level 1 (a fire exit)
+   - to level 3 (a fire exit)
+   - to level 4 (certain hallways)
  
 
+Level 3 : Electrical Station
+ - Unsafe
+ - Entities :
+ - Mobs :
+   - Hounds (c.f level 1)
+   - Skin-Stealers (c.f level 2)
+   - Smilers (c.f level 2)
+   - Dullers (Tall, grey, faceless humanoids that lurk in the dark. They try to remain unseen and can drive you to exhaustion).
+ - Desc : 
+   The silence of the previous levels is gone. It has been replaced by a deafening, industrial roar. You are standing in a series of narrow, claustrophobic corridors made of dark brick. Thick electrical cables snake along the walls and ceiling, pulsating with dangerous energy. The air smells of ozone and burnt copper. It is dark here—much darker than Level 2. The only light comes from the occasional spark of a loose wire or the dim glow of machinery behind barred windows. The layout is confusing and tight. You feel enclosed, trapped. The noise makes it hard to hear if something is stalking you, but you can feel eyes on your back. This is the Electrical Station. Keep moving, and don't touch the wires.
+ - Entrances :
+   - by level 2 (a unlocked door)
+ - Exits :
+   - to level 4 (a elevators)
+   - to level 5 (a rare wooden doors)
+
+
+Level 4 : Abandoned Office
+ - Safe
+ - Entities :
+   - Friendly NPC : Occasional researchers or wanderers resting.
+ - Mobs :
+   - Hounds (Very rare here)
+   - Dullers (Rare, blending into the office corners)
+ - Desc : 
+   The noise stops instantly. You are standing on a soft, grey carpet. The air is cool and still. Around you is a seemingly infinite, empty office building. There is no furniture, just walls, windows, and the occasional water cooler. For the first time in a long time, you feel a sense of safety. The fluorescent lights here don't buzz; they hum quietly. If you look out the windows, you see nothing but darkness and hear the soothing sound of rain hitting the glass. It is trapped in an eternal night. You can rest here. You can find Almond Water in the coolers. But do not get too comfortable. The silence can be deceptive, and the lack of furniture makes it easy to lose your sense of direction.
+ - Entrances :
+   - by level 3 (elevators)
+ - Exits :
+   - to level 5 (stairs going up)
+   - to level 6 (stairs going down - warning: danger)
+   - to real world (golden door) 
+Level 5 : Terror Hotel
+ - Unsafe
+ - Entities :
+ - Mobs :
+   - Deathmoths (Male) (c.f Level 1 - mostly harmless)
+   - Deathmoths (Female) (Much larger, can spit acid, very hostile. They build hives in the rooms).
+   - Hounds (c.f level 1)
+   - The Beast of Level 5 (A unique, tall entity wearing a suit. If you see a well-dressed figure in the distance, hide).
+ - Desc : 
+   The office carpet gives way to elegant red rugs and polished mahogany wood. You are in a grand, early 20th-century hotel. Smooth jazz music plays from unseen speakers, echoing through the golden hallways. The architecture is pristine, classy, and completely terrifying. The hotel seems abandoned, yet freshly cleaned. There are infinite doors, each leading to a hotel room. Some are empty; others contain things that defy logic. You may start to feel strange here. The wallpaper seems to have eyes. The shadows stretch too far. Staying here too long erodes your sanity. It is a gilded cage. Enjoy the music, but watch out for the buzzing of wings.
+ - Entrances :
+   - by level 4
+ - Exits :
+   - to level 6 (boiler room)
+
+
+Level 6 : Lights Out
+ - Unsafe (Extreme Danger)
+ - Entities :
+ - Mobs :
+   - Smilers (c.f level 2 - they are very common here due to the darkness)
+   - Wretches (Humans who have lost their sanity and become monsters. They are silent until they attack).
+ - Desc : 
+   You can't see anything. The moment you entered, the light vanished. This is not just darkness; it is a void. You can hold your hand in front of your face and see nothing. The only sound is your own breathing and the beating of your heart. The floor is cold metal. The walls are smooth and cold. You are not alone. You can feel the presence of things moving in the dark around you. Do not run. Do not make a sound. You must feel your way through the blindness, hoping that whatever is breathing near your ear doesn't decide to strike.
+ - Entrances :
+   - by level 5 (boiler room)
+ - Exits :
+   - to level 7 (falling into a hole/puddle)
+
+
+Level 7 : Thalassophobia
+ - Unsafe
+ - Entities :
+ - Mobs :
+   - The Thing on Level 7 (A massive, singular aquatic entity that hunts in the deep waters. Avoid the water if possible).
+ - Desc : 
+   You gasp as you hit the freezing water. You are floating in a flooded room. The water rises to your chest. The furniture floats listlessly around you. The air is damp and frigid. This is only the entrance. Beneath the surface of this "Entrance Room" lies a vast, impossible ocean. The gravity pulls you down. If you dive, there is no bottom, only crushing darkness and the skeletons of those who drowned before you. The water is thick and heavy. You must swim to survive. Keep your head above water. Something massive is moving in the depths below your feet.
+ - Entrances :
+   - by level 6
+ - Exits :
+   - to level 8 (finding a cave entrance in the rock walls above water)
+
+
+Level 8 : Cave System
+ - Unsafe
+ - Entities :
+ - Mobs :
+   - Camo Crawlers (Entities that blend into the rocky terrain).
+   - Arachnids of Level 8 (Giant spiders with potent venom).
+   - Smilers (c.f level 2 - lurking in the deep crevices).
+ - Desc : 
+   You drag yourself out of the water onto rough, jagged stone. You are in a colossal cave system. The air is dusty and dry. Glowing moss on the ceiling provides dim, greenish light. The tunnels twist and turn, some opening into massive caverns, others narrowing into tight squeezes that scratch your skin. Spiderwebs as thick as ropes block your path. You can hear skittering sounds echoing from the darkness. This place is a hunting ground. The predators here are fast and venomous. Watch the ceiling.
+ - Entrances :
+   - by level 7
+ - Exits :
+   - to level 2 (by entering vents)
+   - to level 9 (falling through a random pit in the floor)
+
+
+Level 9 : The Suburbs
+ - Unsafe
+ - Entities :
+ - Mobs :
+   - The Neighborhood Watch (Eyeless humanoids that patrol the streets. If they see you, they will alert others).
+   - Smilers (Hiding in the dark alleys).
+   - Hounds (Roaming the lawns).
+ - Desc : 
+   The jagged stone disappears. You are standing on asphalt. You look around and see... a neighborhood. Rows of suburban houses stretch out under a starless, black sky. Streetlights flicker, casting long, unnatural shadows. It looks like home, but it feels wrong. The houses are dark. The streets are empty. There is a strange, artificial chill in the air. Do not be fooled by the familiarity. This is one of the most dangerous levels. The entities here are organized. Do not look at the houses too long. Do not walk into the light. Stay in the shadows, and keep moving.
+ - Entrances :
+   - by level 8
+ - Exits :
+   - to real world (golden door) (single unsafe level who can led to winning)

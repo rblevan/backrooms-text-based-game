@@ -1,6 +1,6 @@
 package fr.univpoitiers.backrooms;
 
-public class Spells extends Items {
+public class Spells extends Item {
 
 	private String Action;
 
