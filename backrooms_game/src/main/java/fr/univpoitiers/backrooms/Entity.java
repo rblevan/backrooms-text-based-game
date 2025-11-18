@@ -13,19 +13,13 @@ public abstract class Entity {
 	private int attack = 10;
 	private string name;
 
-	public int getPV() {
-		// TODO - implement Entity.getPV
-		throw new UnsupportedOperationException();
-	}
+	public int getPV() {return this.PV;}
 
 	/**
 	 * 
 	 * @param PV
 	 */
-	public void setPV(int PV) {
-		// TODO - implement Entity.setPV
-		throw new UnsupportedOperationException();
-	}
+	public void setPV(int PV) {this.PV = PV;}
 
 	public string getDescription() {
 		return this.description;
@@ -69,8 +63,9 @@ public abstract class Entity {
 	 * @param name
 	 */
 	public Entity(int description, int name) {
-		// TODO - implement Entity.Entity
-		throw new UnsupportedOperationException();
+	throw new UnsupportedOperationException();
+    this.description = description;
+    this.name = name;
 	}
 
 	/**

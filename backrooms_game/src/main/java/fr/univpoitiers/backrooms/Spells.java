@@ -2,7 +2,7 @@ package fr.univpoitiers.backrooms;
 
 public class Spells extends Items {
 
-	private int Action;
+	private String Action;
 
 	public void getAction() {
 		// TODO - implement Spells.getAction
@@ -13,7 +13,7 @@ public class Spells extends Items {
 	 * 
 	 * @param Action
 	 */
-	public void setAction(int Action) {
+	public void setAction(String Action) {
 		// TODO - implement Spells.setAction
 		throw new UnsupportedOperationException();
 	}

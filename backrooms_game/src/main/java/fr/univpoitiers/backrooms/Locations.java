@@ -2,20 +2,34 @@ package fr.univpoitiers.backrooms;
 
 public class Locations {
 
-	private int Description;
+	private String Description;
+    protected final List<Exits> Exits ;
 
-	public void getDescription() {
-		// TODO - implement Locations.getDescription
+	public String getDescription() {
 		throw new UnsupportedOperationException();
+        return this.Description;
 	}
+    public List<Exits> getExits(){
+        throw new UnsupportedOperationException();
+        return this.Exits;
+    }
+    /**
+     *
+     * @param Description
+     */
+    public Locations(String Description) {
+        throw new UnsupportedOperationException();
+        this.Description = Description;
+    }
+    /**
+     * @param Description
+     * @param Exits
+     */
+    public Locations(String Description, List<Exits> Exits){
+        throw new UnsupportedOperationException();
+        this.Description = Description;
+        this.Exits = Exits;
+    }
 
-	/**
-	 * 
-	 * @param Description
-	 */
-	public Locations(int Description) {
-		// TODO - implement Locations.Locations
-		throw new UnsupportedOperationException();
-	}
 
 }

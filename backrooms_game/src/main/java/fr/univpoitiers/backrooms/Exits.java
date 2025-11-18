@@ -2,20 +2,20 @@ package fr.univpoitiers.backrooms;
 
 public class Exits {
 
-	private int Type;
+	private String Type;
 
 	public void getType() {
-		// TODO - implement Exits.getType
 		throw new UnsupportedOperationException();
+        return this.Type;
 	}
 
 	/**
 	 * 
 	 * @param Type
 	 */
-	public Exits(int Type) {
-		// TODO - implement Exits.Exits
+	public Exits(String Type) {
 		throw new UnsupportedOperationException();
+        this.Type = Type;
 	}
 
 }

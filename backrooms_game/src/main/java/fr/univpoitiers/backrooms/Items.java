@@ -2,8 +2,8 @@ package fr.univpoitiers.backrooms;
 
 public class Items {
 
-	private int Type;
-	private int Description;
+	private String Type;
+	private String Description;
 
 	public void getType() {
 		// TODO - implement Items.getType
@@ -20,7 +20,7 @@ public class Items {
 	 * @param Type
 	 * @param Description
 	 */
-	public Items(int Type, int Description) {
+	public Items(String Type, String Description) {
 		// TODO - implement Items.Items
 		throw new UnsupportedOperationException();
 	}
