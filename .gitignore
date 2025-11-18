@@ -1,0 +1,25 @@
+# --- IntelliJ IDEA (Fichiers de configuration de l'IDE) ---
+.idea/
+*.iws
+*.iml
+*.ipr
+
+# --- Java (Fichiers compilés) ---
+*.class
+
+# --- Dossiers de build (Sortie de compilation) ---
+out/
+build/
+target/
+
+# --- Archives et Logs ---
+*.log
+*.jar
+*.war
+*.zip
+*.tar.gz
+
+# --- Système d'exploitation (Fichiers parasites) ---
+.DS_Store
+Thumbs.db
+Desktop.ini
