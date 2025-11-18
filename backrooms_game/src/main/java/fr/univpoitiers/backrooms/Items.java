@@ -5,23 +5,22 @@ public class Items {
 	private String Type;
 	private String Description;
 
-	public void getType() {
-		// TODO - implement Items.getType
-		throw new UnsupportedOperationException();
+	public String getType() {
+		return this.Type;
 	}
 
-	public void getDescription() {
-		// TODO - implement Items.getDescription
-		throw new UnsupportedOperationException();
+	public String getDescription() {
+		return this.Description;
 	}
 
 	/**
 	 * 
-	 * @param Type
-	 * @param Description
+	 * @param type
+	 * @param description
 	 */
-	public Items(String Type, String Description) {
-		// TODO - implement Items.Items
+	public Items(String type, String description) {
+		this.Type = type;
+        this.Description = description;
 		throw new UnsupportedOperationException();
 	}
 

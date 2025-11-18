@@ -4,8 +4,7 @@ public class Exits {
 
 	private String Type;
 
-	public void getType() {
-		throw new UnsupportedOperationException();
+	public String getType() {
         return this.Type;
 	}
 
@@ -14,8 +13,8 @@ public class Exits {
 	 * @param Type
 	 */
 	public Exits(String Type) {
+		this.Type = Type;
 		throw new UnsupportedOperationException();
-        this.Type = Type;
 	}
 
 }

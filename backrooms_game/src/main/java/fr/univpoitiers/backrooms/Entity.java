@@ -11,17 +11,22 @@ public abstract class Entity {
 	 * valeur d'attaque
 	 */
 	private int attack = 10;
-	private string name;
+	private String name;
 
-	public int getPV() {return this.PV;}
+	public int getPV() {
+		return this.PV;
+	}
 
 	/**
 	 * 
 	 * @param PV
 	 */
-	public void setPV(int PV) {this.PV = PV;}
+	public void setPV(int PV) {
+		this.PV = PV;
+		throw new UnsupportedOperationException();
+	}
 
-	public string getDescription() {
+	public String getDescription() {
 		return this.description;
 	}
 
@@ -29,7 +34,7 @@ public abstract class Entity {
 	 * 
 	 * @param description
 	 */
-	public void setDescription(string description) {
+	public void setDescription(String description) {
 		this.description = description;
 	}
 
@@ -45,7 +50,7 @@ public abstract class Entity {
 		this.attack = attack;
 	}
 
-	public string getName() {
+	public String getName() {
 		return this.name;
 	}
 
@@ -53,19 +58,17 @@ public abstract class Entity {
 	 * 
 	 * @param name
 	 */
-	public void setName(string name) {
-		this.name = name;
-	}
+	public void setName(String name) {this.name = name;}
 
 	/**
 	 * 
 	 * @param description
 	 * @param name
 	 */
-	public Entity(int description, int name) {
-	throw new UnsupportedOperationException();
-    this.description = description;
-    this.name = name;
+	public Entity(String description, String name) {
+		this.description = description;
+        this.name = name;
+		throw new UnsupportedOperationException();
 	}
 
 	/**
@@ -75,8 +78,11 @@ public abstract class Entity {
 	 * @param attack
 	 * @param name
 	 */
-	public Entity(int PV, int description, int attack, int name) {
-		// TODO - implement Entity.Entity
+	public Entity(int PV, String description, int attack, String name) {
+		this.PV = PV;
+        this.description = description;
+        this.attack = attack;
+        this.name = name;
 		throw new UnsupportedOperationException();
 	}
 
