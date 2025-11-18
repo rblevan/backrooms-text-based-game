@@ -14,5 +14,6 @@ public class Main
         Locations r4 = new Locations("- Level 3 - \n\n" + "C'est le level 3");
         Locations r5 = new Locations("- Level 4 - \n\n" + "C'est le level 4");
 
+        Characters C1 = new Characters(100,"CACA", 20, "je mange les pieds");
     }
 }

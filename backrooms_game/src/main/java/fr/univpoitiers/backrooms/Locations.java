@@ -20,5 +20,4 @@ public class Locations {
 		// TODO - implement Locations.Locations
 		throw new UnsupportedOperationException();
 	}
-
 }
