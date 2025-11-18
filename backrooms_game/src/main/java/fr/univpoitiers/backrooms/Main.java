@@ -1,9 +1,5 @@
 package fr.univpoitiers.backrooms;
 
-/**
- * Hello world!
- *
- */
 public class Main
 {
     public static void main( String[] args )

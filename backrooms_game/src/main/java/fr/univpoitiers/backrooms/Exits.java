@@ -2,20 +2,18 @@ package fr.univpoitiers.backrooms;
 
 public class Exits {
 
-	private int Type;
-    private Locations room;
+	private String Type;
 
-	public void getType() {
-		// TODO - implement Exits.getType
-		throw new UnsupportedOperationException();
+	public String getType() {
+        return this.Type;
 	}
 
 	/**
 	 * 
 	 * @param Type
 	 */
-	public Exits(int Type) {
-		// TODO - implement Exits.Exits
+	public Exits(String Type) {
+		this.Type = Type;
 		throw new UnsupportedOperationException();
 	}
 
