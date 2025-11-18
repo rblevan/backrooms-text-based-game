@@ -1,13 +1,64 @@
 Backrooms game (jeu textuel)
 
-Level 1 : Lobby
+Level -1 : Grey corridor
+ - Unsafe
+ - Entities :
+   - Mobs :
+     - Facelings
+     - Hounds
+     - Skin-Stealers
+     - Nutrisha (entity exclusive level -1, Reports vary wildly. It is described as a tall, black, light-absorbing figure. Some witnesses claim it is a slender humanoid; others, a large, shadowy spider. It is unknown if it has a true form, passive unless you provock him)
+ - Desc :
+   You have entered a long, straight hallway. The air is immediately glacial, chilling you to the bone. It holds at a constant, freezing 0°C (32°F).
+The walls are hard concrete, but the floor is covered by a strange, old carpet that muffles your footsteps. A faint, persistent humming sound buzzes from the various fluorescent lights on the ceiling. Some flicker erratically, while others have been completely shattered, leaving a crunch of fine glass on the floor.
+This place is known as "The Negative Hub."
+Both sides of the corridor are lined with an endless series of wooden doors, spaced only a few feet apart. Each one is a potential exit, but be warned: they are far more likely to lead to other negative Levels than to safety.
+As you walk, you notice something deeply unsettling: the wallpaper's color and pattern seem to shift and change as you move past it.
+The walls are sparsely decorated with items that feel wrong: blank paintings, inoperative fire alarms, and broken exit signs. These objects are unstable. They have been known to suddenly float, teleport, or even explode without warning.
+You must be cautious. From time to time, you may hear sounds from behind one of the doors: a distinct knocking, a low growl, or scratching. If this occurs, do not, under any circumstances, open the door. Your only option is to get away from it as fast as possible.
+ - Entrances :
+   - by level 0
+ - Exits :
+   - to level 1
+   - to level -1
+   - to level 3
+
+Level 0 : Lobby
  - Safe
  - Entities : 
-   - NPC : talking npc or friends (like they follow you in your journey)
+   - friendly NPC : talking npc or friends (like they follow you in your journey)
    - Mobs : entities for level 1 of backrooms's lore
  - Desc :
    You wake up in an endless maze of yellow-tinted rooms, dimly lit by flickering fluorescent lights that hum with an unbearable buzz. The wallpaper is old and peeling, the carpet is damp beneath your feet, and the air smells faintly of mold and electricity. Every room looks the same, yet none are truly identical. You walk straight, turn around, retrace your steps - only to find yourself somewhere new. The rules of space don't seem to apply here.
  - Exits :
    - to level 1
    - to level -1
+
+
+Level 1 : Living area
+ - Safe
+ - Entities :
+   - friendly NPC
+   - Mobs :
+     - Facelings (entity 9, human without a face, can be dangerous, unpredictable)
+     - Clumps (entity 5, massive clusters of human limbs writhing and spreading out in all directions, attack everybody) 
+     - Hounds (entity 8, Humanoid beings with canine features. They move on all fours, have long bony limbs with sharp claws, and large mouths filled with sharp teeth. Their eyes are pure, milky white, lacking irises or pupils, hostile if he see a human)
+     - Deathmoths (entity 4, These entities bear a striking resemblance to butterflies of the Acherontia genus, but they are distinguished by their abnormally large size, don't seems degerous) 
+ - Desc : 
+   The maddening hum of the yellow wallpaper has faded. You are somewhere else.
+The air is cold and smells of damp concrete and... something strangely sweet. Almonds.
+You are in a vast warehouse. High above, industrial fluorescent lights cast a harsh, reliable glow. Unlike the flicker of before, the power here is constant. But the floor is wet. Pools of milky water steam gently, releasing a thick, low-hanging fog that clings to the ground. It obscures everything. Abandoned forklifts sit like sleeping beasts in the mist.
+This is Level 1. They call it the 'Habitable Zone'.
+The reliable electricity means you are not the first. Others are here, surviving in groups, hidden by the same fog that hides you. You can hear distant echoes, but the mist muffles the sound.
+Stairwells and dark corridors branch off into the haze, leading to different zones.
+ - Entrances :
+   - by level 0
+ - Exits : 
+   - to level 0
+   - to level 2
+
+
+Level 2 : Pipe Dreams
+ - Unsafe
+ 
 
