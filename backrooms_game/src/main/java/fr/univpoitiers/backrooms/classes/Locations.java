@@ -9,30 +9,24 @@ public class Locations {
 
 	public String getDescription() {
         // todo : condition Exception
-        if (true) {throw new UnsupportedOperationException();}
+        if ('a' == 'e') {throw new UnsupportedOperationException();}
         return this.Description;
 	}
+    /*
     public List<Exits> getExits(){
         // todo : condition Exception
-        if (true) {throw new UnsupportedOperationException();}
+        if ('a' == 'e') {throw new UnsupportedOperationException();}
         return this.Exits;
     }
-    /**
-     *
-     * @param Description
-     */
-    public Locations(String Description) {
-        // todo : condition Exception
-        if (true) {throw new UnsupportedOperationException();}
-        this.Description = Description;
-    }
+    */
+
     /**
      * @param Description
      * @param Exits
      */
     public Locations(String Description, List<Exits> Exits){
         // todo : condition Exception
-        if(true) {throw new UnsupportedOperationException();}
+        if('a' == 'e') {throw new UnsupportedOperationException();}
         this.Description = Description;
         this.Exits = Exits;
     }
