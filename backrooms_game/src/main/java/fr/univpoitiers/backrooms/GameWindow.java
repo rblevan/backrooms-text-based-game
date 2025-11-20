@@ -1,6 +1,8 @@
 package fr.univpoitiers.backrooms;
 
 import javax.swing.*;
+import javax.swing.text.Caret;
+import javax.swing.text.DefaultCaret;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -10,6 +12,11 @@ public class GameWindow extends JFrame {
     private JTextArea textArea;
     private JTextField inputField;
 
+    // Timer for the typewriter effect
+    private Timer typewriterTimer;
+    private String textToType;
+    private int charIndex;
+
     public GameWindow() {
         setTitle("Backrooms game");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -17,17 +24,15 @@ public class GameWindow extends JFrame {
         setResizable(false);
 
         // --- UI Components ---
-        // Colors and Font
         Color backgroundColor = Color.BLACK;
         Color textColor = Color.WHITE;
         Font font = new Font("Monospaced", Font.PLAIN, 14);
 
-        // Main Panel
         JPanel panel = new JPanel(new BorderLayout());
         panel.setBackground(backgroundColor);
         setContentPane(panel);
 
-        // Text Area for game output
+        // Text area for game output
         textArea = new JTextArea();
         textArea.setEditable(false);
         textArea.setBackground(backgroundColor);
@@ -41,56 +46,65 @@ public class GameWindow extends JFrame {
         scrollPane.setBorder(BorderFactory.createEmptyBorder());
         panel.add(scrollPane, BorderLayout.CENTER);
 
-        // --- Input Panel at the bottom ---
+        // Input field for user commands
         JPanel inputPanel = new JPanel(new BorderLayout());
         inputPanel.setBackground(backgroundColor);
-        // Add a top border to separate it from the text area
         inputPanel.setBorder(BorderFactory.createMatteBorder(1, 0, 0, 0, Color.DARK_GRAY));
         panel.add(inputPanel, BorderLayout.SOUTH);
 
-        // The ">" prompt
+        // Prompt label and input field
         JLabel promptLabel = new JLabel("> ");
         promptLabel.setForeground(textColor);
         promptLabel.setFont(font);
-        promptLabel.setBorder(BorderFactory.createEmptyBorder(5, 10, 5, 0)); // Padding
+        promptLabel.setBorder(BorderFactory.createEmptyBorder(5, 10, 5, 0));
         inputPanel.add(promptLabel, BorderLayout.WEST);
 
-        // Input field for user commands
+        // Input field
         inputField = new JTextField();
         inputField.setBackground(backgroundColor);
         inputField.setForeground(textColor);
         inputField.setFont(font);
-        inputField.setCaretColor(textColor); // Make the cursor visible
-        inputField.setBorder(BorderFactory.createEmptyBorder(5, 0, 5, 10)); // Remove default border and add padding
+        inputField.setCaretColor(textColor);
+        inputField.setBorder(BorderFactory.createEmptyBorder(5, 0, 5, 10));
         inputPanel.add(inputField, BorderLayout.CENTER);
 
-        // --- Event Listener for input ---
-        inputField.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                String command = inputField.getText();
-                if (!command.trim().isEmpty()) {
-                    // Display the command in the text area
-                    appendText("> " + command + "\n");
-                    // TODO: Process the command here
-                    inputField.setText(""); // Clear the input field after processing
-                }
+        inputField.addActionListener(e -> {
+            String command = inputField.getText();
+            if (!command.trim().isEmpty()) {
+                appendText("> " + command + "\n");
+                // TODO: Process the command here
+                inputField.setText("");
             }
         });
 
-        // Center and show the window
+        // Initialize the Timer
+        int delay = 40; // Milliseconds between characters. Adjust for speed.
+        typewriterTimer = new Timer(delay, e -> {
+            if (charIndex < textToType.length()) {
+                textArea.append(String.valueOf(textToType.charAt(charIndex)));
+                textArea.setCaretPosition(textArea.getDocument().getLength());
+                charIndex++;
+            } else {
+                typewriterTimer.stop();
+            }
+        });
+
         setLocationRelativeTo(null);
         setVisible(true);
     }
 
     /**
-     * Appends text to the game's output area.
+     * Appends text to the game's output area with a typewriter effect.
      * @param text The text to append.
      */
     public void appendText(final String text) {
-        SwingUtilities.invokeLater(() -> {
-            textArea.append(text);
-            textArea.setCaretPosition(textArea.getDocument().getLength());
-        });
+        if (typewriterTimer.isRunning()) {
+            typewriterTimer.stop();
+        }
+
+        this.textToType = text;
+        this.charIndex = 0;
+
+        typewriterTimer.start();
     }
 }

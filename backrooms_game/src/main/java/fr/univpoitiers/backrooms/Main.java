@@ -20,5 +20,8 @@ public class Main
 
         GameWindow gameWindow = new GameWindow();
 
+        gameWindow.appendText("Welcome to the Backrooms game!\n\n");
+
+
     }
 }
