@@ -1,5 +1,6 @@
 package fr.univpoitiers.backrooms;
 
+import fr.univpoitiers.backrooms.classes.Commands;
 import javax.swing.*;
 import javax.swing.text.Caret;
 import javax.swing.text.DefaultCaret;
@@ -11,13 +12,17 @@ public class GameWindow extends JFrame {
 
     private JTextArea textArea;
     private JTextField inputField;
-
-    // Timer for the typewriter effect
     private Timer typewriterTimer;
     private String textToType;
     private int charIndex;
 
-    public GameWindow() {
+    // NEW: Add an attribute to hold the command processor
+    private final Commands commands;
+
+    // NEW: The constructor now requires a Commands object
+    public GameWindow(Commands commands) {
+        this.commands = commands; // Store the provided Commands instance
+
         setTitle("Backrooms game");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize(800, 600);
@@ -41,6 +46,10 @@ public class GameWindow extends JFrame {
         textArea.setLineWrap(true);
         textArea.setWrapStyleWord(true);
         textArea.setMargin(new Insets(10, 10, 10, 10));
+
+        Caret caret = textArea.getCaret();
+        caret.setVisible(true);
+        ((DefaultCaret) caret).setUpdatePolicy(DefaultCaret.ALWAYS_UPDATE);
 
         JScrollPane scrollPane = new JScrollPane(textArea);
         scrollPane.setBorder(BorderFactory.createEmptyBorder());
@@ -71,14 +80,21 @@ public class GameWindow extends JFrame {
         inputField.addActionListener(e -> {
             String command = inputField.getText();
             if (!command.trim().isEmpty()) {
+                // 1. Display the user's command immediately
                 appendText("> " + command + "\n");
-                // TODO: Process the command here
-                inputField.setText("");
+                inputField.setText(""); // Clear the input field right away
+
+                // 2. Process the command and get the result
+                String result = this.commands.processCommand(command);
+
+                // 3. Display the result if there is one
+                if (result != null && !result.trim().isEmpty()) {
+                    appendText(result + "\n");
+                }
             }
         });
 
-        // Initialize the Timer
-        int delay = 40; // Milliseconds between characters. Adjust for speed.
+        int delay = 40;
         typewriterTimer = new Timer(delay, e -> {
             if (charIndex < textToType.length()) {
                 textArea.append(String.valueOf(textToType.charAt(charIndex)));
@@ -101,10 +117,8 @@ public class GameWindow extends JFrame {
         if (typewriterTimer.isRunning()) {
             typewriterTimer.stop();
         }
-
         this.textToType = text;
         this.charIndex = 0;
-
         typewriterTimer.start();
     }
 }
