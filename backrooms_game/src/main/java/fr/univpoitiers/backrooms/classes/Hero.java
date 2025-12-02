@@ -1,8 +1,8 @@
 package fr.univpoitiers.backrooms.classes;
 
 public class Hero extends Entity {
-    public Hero(String description, String name) {
-        super(description, name);
+    public Hero(String name) {
+        super(name);
     }
 
     public Hero(int PV, String name, int attack, String description){
