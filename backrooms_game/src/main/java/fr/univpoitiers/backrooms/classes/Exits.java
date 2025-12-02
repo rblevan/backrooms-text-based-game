@@ -3,6 +3,7 @@ package fr.univpoitiers.backrooms.classes;
 public class Exits {
 
 	private String Type;
+    private Locations Location;
 
 	public String getType() {
         return this.Type;

@@ -33,15 +33,15 @@ public class Locations {
     }
 
     public String getTitle() {
-        return title;
+        return this.title;
     }
 
     public Direction getNextLocation() {
-        return nextLocation;
+        return this.nextLocation;
     }
 
     public List<String> getItems() {
-        return items;
+        return this.items;
     }
 
 
