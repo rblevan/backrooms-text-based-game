@@ -129,7 +129,7 @@ public class Main {
             // Initialisation du joueur : NOM + Position de départ (Level 0)
             Hero player = new Hero("Anonyme", level0); // Nécessite un constructeur Hero(String name, Locations startLocation)
 
-            Commands commandProcessor = new Commands(); // Le processeur de commandes a besoin du joueur
+            Commands commandProcessor = new Commands(player, level0); // Le processeur de commandes a besoin du joueur
             GameWindow gameWindow = new GameWindow(commandProcessor);
 
             // --- 4. Affichage Initial ---

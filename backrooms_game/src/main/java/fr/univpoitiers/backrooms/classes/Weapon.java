@@ -1,6 +1,8 @@
 package fr.univpoitiers.backrooms.classes;
 
-public class Weapon {
+import fr.univpoitiers.backrooms.interfaces.Items;
+
+public class Weapon implements Items {
     private String name;
     private int volume;
     private String description;
@@ -15,19 +17,26 @@ public class Weapon {
         this.damage = damage;
     }
 
+    @Override
     public String getDescription() {
         return description;
     }
 
+    @Override
     public int getVolume() {
         return volume;
     }
 
+    @Override
     public String getName() {
         return name;
     }
 
     public int getDamage() {
         return damage;
+    }
+
+    public void Attack (Entity entity){
+        entity.setPV(entity.getPV() - this.damage);
     }
 }
