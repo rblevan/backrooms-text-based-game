@@ -5,30 +5,29 @@ import javax.swing.*;
 import javax.swing.text.Caret;
 import javax.swing.text.DefaultCaret;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import java.util.LinkedList;
+import java.util.Queue;
 
 public class GameWindow extends JFrame {
 
-    private JTextArea textArea;
-    private JTextField inputField;
+    private final JTextArea textArea;
+    private final JTextField inputField;
     private Timer typewriterTimer;
-    private String textToType;
-    private int charIndex;
-
-    // NEW: Add an attribute to hold the command processor
     private final Commands commands;
 
-    // NEW: The constructor now requires a Commands object
+    private final Queue<String> textQueue = new LinkedList<>();
+    private String currentTextToType; // The text currently being typed.
+    private int charIndex;
+
     public GameWindow(Commands commands) {
-        this.commands = commands; // Store the provided Commands instance
+        this.commands = commands;
 
         setTitle("Backrooms game");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize(800, 600);
         setResizable(false);
 
-        // --- UI Components ---
+        // UI Components
         Color backgroundColor = Color.BLACK;
         Color textColor = Color.WHITE;
         Font font = new Font("Monospaced", Font.PLAIN, 14);
@@ -47,6 +46,7 @@ public class GameWindow extends JFrame {
         textArea.setWrapStyleWord(true);
         textArea.setMargin(new Insets(10, 10, 10, 10));
 
+        // For this | to blink
         Caret caret = textArea.getCaret();
         caret.setVisible(true);
         ((DefaultCaret) caret).setUpdatePolicy(DefaultCaret.ALWAYS_UPDATE);
@@ -80,14 +80,10 @@ public class GameWindow extends JFrame {
         inputField.addActionListener(e -> {
             String command = inputField.getText();
             if (!command.trim().isEmpty()) {
-                // 1. Display the user's command immediately
                 appendText("> " + command + "\n");
-                inputField.setText(""); // Clear the input field right away
+                inputField.setText("");
 
-                // 2. Process the command and get the result
                 String result = this.commands.processCommand(command);
-
-                // 3. Display the result if there is one
                 if (result != null && !result.trim().isEmpty()) {
                     appendText(result + "\n");
                 }
@@ -96,13 +92,23 @@ public class GameWindow extends JFrame {
 
         int delay = 40;
         typewriterTimer = new Timer(delay, e -> {
-            if (charIndex < textToType.length()) {
-                textArea.append(String.valueOf(textToType.charAt(charIndex)));
-                textArea.setCaretPosition(textArea.getDocument().getLength());
-                charIndex++;
-            } else {
-                typewriterTimer.stop();
+            // Check if we have finished the current text
+            if (currentTextToType == null || charIndex >= currentTextToType.length()) {
+                // Try to get the next text from the queue
+                currentTextToType = textQueue.poll(); // poll() returns null if the queue is empty
+                charIndex = 0; // Reset for the new text
+
+                // If the queue was empty, there's nothing more to do. Stop the timer.
+                if (currentTextToType == null) {
+                    typewriterTimer.stop();
+                    return; // Exit the action listener for this tick
+                }
             }
+
+            // If we are here, we have text to type. Append one character.
+            textArea.append(String.valueOf(currentTextToType.charAt(charIndex)));
+            textArea.setCaretPosition(textArea.getDocument().getLength());
+            charIndex++;
         });
 
         setLocationRelativeTo(null);
@@ -110,15 +116,20 @@ public class GameWindow extends JFrame {
     }
 
     /**
-     * Appends text to the game's output area with a typewriter effect.
+     * NEW: Adds text to a queue to be displayed sequentially.
+     * Starts the typewriter effect if it's not already running.
      * @param text The text to append.
      */
     public void appendText(final String text) {
-        if (typewriterTimer.isRunning()) {
-            typewriterTimer.stop();
+        if (text == null || text.isEmpty()) {
+            return; // Don't add empty text to the queue
         }
-        this.textToType = text;
-        this.charIndex = 0;
-        typewriterTimer.start();
+        textQueue.add(text); // Add the new text to the end of the queue
+
+        // If the timer isn't already running, start it.
+        // It will then automatically pick up the text from the queue.
+        if (!typewriterTimer.isRunning()) {
+            typewriterTimer.start();
+        }
     }
 }
