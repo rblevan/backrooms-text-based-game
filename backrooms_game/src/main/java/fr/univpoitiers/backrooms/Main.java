@@ -23,16 +23,13 @@ public class Main
 
             Characters C1 = new Characters(100, "CACA", 20, "je mange les pieds");
 
-            // NEW: Create an instance of the command processor
             Commands commandProcessor = new Commands();
 
-            // NEW: Pass the command processor to the GameWindow
             GameWindow gameWindow = new GameWindow(commandProcessor);
 
             // --- Initial Game Text ---
             gameWindow.appendText("Welcome to the Backrooms.\n");
             gameWindow.appendText("You find yourself in a strange place...\n\n");
-            // You could add the first room's description here, for example:
             // gameWindow.appendText(r1.getDescription() + "\n");
             // gameWindow.appendText(r2.getDescription() + "\n");
             
