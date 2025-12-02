@@ -44,5 +44,8 @@ public class Locations {
         return this.items;
     }
 
+    public void addExit(Direction direction, Locations location){
+        this.exits.put(direction, location);
+    }
 
 }
