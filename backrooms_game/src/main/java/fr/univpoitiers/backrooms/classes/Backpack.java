@@ -32,7 +32,7 @@ public class Backpack implements Items {
 
     @Override
     public int getVolume() {
-        return this.itemVolume;
+        return this.itemVolume; // Retourne sa taille, pas sa capacité
     }
 
     @Override
@@ -58,7 +58,7 @@ public class Backpack implements Items {
 
         if (this.usedVolume + itemVolume <= this.capacity) {
             this.items.add(item);
-            this.usedVolume += itemVolume;
+            this.usedVolume += itemVolume; // CORRECTION : Mise à jour du volume utilisé
             return true;
         }
         return false;
@@ -66,7 +66,7 @@ public class Backpack implements Items {
 
     public void removeItem(Items item) {
         if (this.items.remove(item)) {
-            this.usedVolume -= item.getVolume();
+            this.usedVolume -= item.getVolume(); // CORRECTION : Mise à jour du volume utilisé
         }
     }
 
@@ -76,7 +76,7 @@ public class Backpack implements Items {
 
     public void setItems(List<Items> items) {
         this.items = items;
-        this.updateUsedVolume();
+        this.updateUsedVolume(); // Nouvelle méthode pour calculer le volume total
     }
 
     // Méthode utilitaire pour recalculer le volume utilisé
