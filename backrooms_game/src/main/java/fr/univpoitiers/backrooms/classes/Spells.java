@@ -37,6 +37,14 @@ public class Spells extends Items {
         return null;
     }
 
+    @Override
+    public String use(Hero player) {
+        return null;
+    }
 
+    @Override
+    public String useWith(Items target, Hero player) {
+        return null;
+    }
 
 }
