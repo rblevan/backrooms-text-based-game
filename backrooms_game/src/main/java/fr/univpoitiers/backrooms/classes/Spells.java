@@ -1,8 +1,6 @@
 package fr.univpoitiers.backrooms.classes;
 
-import fr.univpoitiers.backrooms.interfaces.Items;
-
-public class Spells implements Items {
+public class Spells extends Items {
 
 	private String Action;
 
@@ -10,6 +8,10 @@ public class Spells implements Items {
 		// TODO - implement Spells.getAction
 		throw new UnsupportedOperationException();
 	}
+
+    public Spells(String name, int volume, String description) {
+        super(name, volume, description);
+    }
 
 	/**
 	 * 

@@ -1,5 +1,7 @@
 package fr.univpoitiers.backrooms.classes;
 
+import fr.univpoitiers.backrooms.enumeration.Direction;
+
 import javax.swing.*;
 import java.util.Arrays;
 import java.util.List;
@@ -75,13 +77,13 @@ public class Commands {
         if (args.length == 0) {
             return "Go where? Specify a direction or a place.";
         }
-        String direction = args[0];
+        Direction direction = Direction.valueOf(args[0]);
         if (this.currentLocation.getExits().containsKey(direction)){
-            this.currentLocation = this.currentLocation.getExits().get(direction);
+            this.currentLocation = this.currentLocation.getExits().get(direction).getDestination();
          return "You go " + direction + ".";
         }
-        else{
-            return "You can't go that way. Try another direction. (NORTH, SOUTH, EAST, WEST, UP, DOWN)";
+        else {
+            return "You can't go that way. Try another direction. (NORTH, SOUTH, EAST, WEST)";
         }
     }
 
