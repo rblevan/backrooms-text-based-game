@@ -75,13 +75,11 @@ public class Main {
             // Level 0 (Lobby)
             level0.addExit(Direction.NORTH, new Exits(level1, "Staircase going up to Level 1", false));
             level0.addExit(Direction.SOUTH, new Exits(levelMinus1, "A glitching area leading to Level -1", false)); // CONNEXION RETABLIE
-            level0.addExit(Direction.EAST,  new Exits(realWorld, "A golden door toward the real world", false));
 
             // Level 1 (Living Area)
 
             level1.addExit(Direction.SOUTH, new Exits(level0, "Door to Level 0", false));
             level1.addExit(Direction.EAST, new Exits(level2, "Maintenance door to Level 2", false));
-            level1.addExit(Direction.NORTH,  new Exits(realWorld, "Golden door to real world", false));
 
             // Level 2 (Pipe Dreams)
             level2.addExit(Direction.WEST, new Exits(level1, "Return to Level 1", false));
@@ -95,7 +93,6 @@ public class Main {
             // Level 4 (Abandoned Office)
             level4.addExit(Direction.NORTH, new Exits(level5, "Stairs up to Level 5", false));
             level4.addExit(Direction.SOUTH, new Exits(level6, "Stairs down to Level 6", false));
-            level4.addExit(Direction.WEST, new Exits(realWorld, "Golden door to real world", false));
 
             // Level 5 (Terror Hotel)
             level5.addExit(Direction.NORTH,  new Exits(level6, "Boiler room to Level 6", false));
