@@ -12,13 +12,13 @@ public class Locations {
     private final String title;
 	private final String description;
     private final Map<Direction,Exits> exits;
-    private List<Items> items;
+    private Map<String,Items> items;
 
     public Locations(String title, String description) {
         this.title = title;
         this.description = description;
         this.exits = new HashMap<>();
-        this.items = new ArrayList<>();
+        this.items = new HashMap<>();
     }
 
     public String getDescription() {
@@ -33,7 +33,7 @@ public class Locations {
         return this.title;
     }
 
-    public List<Items> getItems() {
+    public Map<String,Items> getItems() {
         return this.items;
     }
 
@@ -42,25 +42,16 @@ public class Locations {
     }
 
     public Items getItemByName(String name) {
-    for (Items item : this.items) {
-        if (item.getName().equalsIgnoreCase(name)) {
-            return item;
-        }
-    }
-    return null;
-}
-
-    public void addItem(Items item) {
-        this.items.add(item);
-    }
-
-    public Items findItemByName(String name) {
-        for (Items item : this.items) {
-            if (item.getName().equalsIgnoreCase(name)) {
-                return item;
+        for (String key : items.keySet()) {
+            if (key.equalsIgnoreCase(name)) {
+                return items.get(key);
             }
         }
         return null;
+    }
+
+    public void addItem(Items item) {
+        this.items.put(item.getName(),item);
     }
 
     public void removeItem(Items item) {

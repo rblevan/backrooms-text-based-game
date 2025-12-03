@@ -110,6 +110,49 @@ public class Main {
             // Level 9 (The Suburbs)
             level9.addExit(Direction.EAST, new Exits(realWorld, "Golden door to real world", false));
 
+            //initialisation d'items dans le jeu
+
+            level0.addItem(new Food("ALMOND_WATER", 1, "Sweet, refreshing and calming.", 20));
+            level0.addItem(new Food("ENERGY_BAR", 1, "A dense bar full of calories.", 10));
+            level0.addItem(new Weapon("FLASHLIGHT", 1, "A weak flashlight. Can stun small entities.", 5));
+
+            level1.addItem(new Weapon("CROWBAR", 3, "A solid metal tool for defense.", 15));
+            level1.addItem(new Food("LUNCHBOX_SANDWICH", 1, "A stale but edible sandwich.", 12));
+
+            level2.addItem(new Weapon("BROKEN_PIPE", 2, "A heavy shard of rusted pipe.", 12));
+            level2.addItem(new Food("EXPIRED_RATIONS", 1, "Tastes awful but restores energy.", 8));
+
+            level3.addItem(new Food("ELECTROLYTE_DRINK", 1, "Helps with recovery.", 15));
+            level3.addItem(new Spells("STATIC_PULSE", 1, "A spell generating a burst of static energy."));
+
+            level4.addItem(new Food("ALMOND_WATER_BOTTLE", 1, "Fresh almond water.", 25));
+            level4.addItem(new Spells("MEMORY_FLASH", 1, "A spell that temporarily reveals hidden paths."));
+
+            level5.addItem(new Weapon("FIRE_AXE", 4, "A sharp emergency axe.", 25));
+            level5.addItem(new Spells("HAUNTING_WHISPER", 1, "A dangerous spell with unpredictable effects."));
+
+            level6.addItem(new Weapon("GLOWSTICK_TORCH", 1, "A glowing stick acting as a weak weapon.", 3));
+            level6.addItem(new Spells("VOID_ECHO", 1, "A spell born from absolute darkness."));
+
+            level7.addItem(new Food("HYDRATION_GEL", 1, "A strange gel restoring stamina.", 12));
+
+            level8.addItem(new Weapon("CRYSTAL_SHARD", 1, "A sharp glowing stone from the cave.", 10));
+
+            level9.addItem(new Food("CHILDS_SNACK_PACK", 1, "A small pack of candy.", 8));
+            level9.addItem(new Spells("SUBURB_MIRAGE", 1, "A spell creating illusions of safety."));
+
+            realWorld.addItem(new Spells("REALITY_ANCHOR", 1, "A spell stabilizing your presence in the real world."));
+
+
+
+
+
+
+
+
+
+
+
 
             // --- 3. Initialisation du Joueur et du Jeu ---
 

@@ -8,8 +8,6 @@ public class Food extends Items {
         this.healPoints = healPoints;
     }
 
-
-
     public int getHealPoints() {
         return this.healPoints;
     }
