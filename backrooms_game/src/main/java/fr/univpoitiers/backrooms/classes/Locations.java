@@ -1,7 +1,6 @@
 package fr.univpoitiers.backrooms.classes;
 
 import fr.univpoitiers.backrooms.enumeration.Direction;
-import fr.univpoitiers.backrooms.interfaces.Items;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -13,7 +12,8 @@ public class Locations {
     private final String title;
     private final String description;
     private final Map<Direction, Locations> exits;
-    private final List<Items> items;
+    private Direction nextLocation;
+    private List<Items> items;
 
     public Locations(String title, String description) {
         this.title = title;
@@ -34,6 +34,10 @@ public class Locations {
         return this.title;
     }
 
+    public Direction getNextLocation() {
+        return this.nextLocation;
+    }
+
     public List<Items> getItems() {
         return this.items;
     }
@@ -41,6 +45,15 @@ public class Locations {
     public void addExit(Direction direction, Locations location) {
         this.exits.put(direction, location);
     }
+
+    public Items getItemByName(String name) {
+    for (Items item : this.items) {
+        if (item.getName().equalsIgnoreCase(name)) {
+            return item;
+        }
+    }
+    return null;
+}
 
     public void addItem(Items item) {
         this.items.add(item);
