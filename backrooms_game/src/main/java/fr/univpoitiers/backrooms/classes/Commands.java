@@ -45,9 +45,7 @@ public class Commands {
         String commandWord = parts[0];
         String[] args = parts.length > 1 ? parts[1].split("\\s+") : new String[0];
 
-        // Check if it's a known command
         if (!CommandWords.isCommand(commandWord)) {
-            // Check if it's a special ability the player has learned
             return "Unknown command. Type HELP for a list of commands.";
         }
 
@@ -87,12 +85,10 @@ public class Commands {
 
     private String look(String[] args) {
         if (args.length == 0) {
-            // Now this works because 'currentLocation' is an object.
             return this.currentLocation.getDescription();
         }
         String objectToLookAt = args[0];
-        // TODO: Implement logic to find 'objectToLookAt' in the current room
-        // or in the player's inventory and return its description.
+        // TODO: Implement logic to find 'objectToLookAt' and return its description.
         return "You look at " + objectToLookAt + "... (Not implemented)";
     }
 
@@ -101,9 +97,7 @@ public class Commands {
             return "Attack what?";
         }
         String targetName = args[0];
-        // TODO: Find the entity named 'targetName' in the current room.
-        // Then, use the player's equipped weapon to attack it.
-        // Example: player.attack(target);
+        // TODO: Find the entity named 'targetName' and attack it.
         return "You attack " + targetName + "! (Not implemented)";
     }
 
@@ -112,10 +106,18 @@ public class Commands {
             return "Take what?";
         }
         String itemName = args[0];
-        // TODO: Find the item 'itemName' in the current room.
-        // Then, add it to the player's backpack.
-        // Example: player.getBackpack().addItem(item);
-        return "You try to take " + itemName + ". (Not implemented)";
+        Items itemToTake = currentLocation.findItemByName(itemName);
+
+        if (itemToTake == null) {
+            return "There is no " + itemName + " here.";
+        }
+
+        if (player.getBackpack().addItem(itemToTake)) {
+            currentLocation.removeItem(itemToTake);
+            return "You take the " + itemToTake.getName() + ".";
+        } else {
+            return "Your backpack is full.";
+        }
     }
 
     private String use(String[] args) {
@@ -123,16 +125,11 @@ public class Commands {
             return "Use what?";
         }
         String itemName = args[0];
-        // TODO: Find the item 'itemName' in the player's backpack.
-        // Then, check its type (Food, Weapon, etc.) and apply its effect.
-        // Example: if (item instanceof Food) { player.heal(((Food)item).getHealPoints()); }
+        // TODO: Implement the 'use' logic based on our design.
         return "You try to use " + itemName + ". (Not implemented)";
     }
 
     private String quit(String[] args) {
-        // This command should probably signal the main game loop to exit.
-        // For now, we can just return a message. A better way is to have a special return value.
-        // We will use "QUIT_GAME" as a special signal.
         return "QUIT_GAME";
     }
 }

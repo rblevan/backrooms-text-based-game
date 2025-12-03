@@ -1,6 +1,7 @@
 package fr.univpoitiers.backrooms.classes;
 
 import fr.univpoitiers.backrooms.enumeration.Direction;
+import fr.univpoitiers.backrooms.interfaces.Items;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -10,25 +11,22 @@ import java.util.Map;
 public class Locations {
 
     private final String title;
-	private final String description;
+    private final String description;
     private final Map<Direction, Locations> exits;
-    private Direction nextLocation;
-    private List<String> items;
+    private final List<Items> items;
 
-    public Locations(String title, String Description){
+    public Locations(String title, String description) {
         this.title = title;
-        this.description = Description;
+        this.description = description;
         this.exits = new HashMap<>();
-        this.nextLocation = null;
         this.items = new ArrayList<>();
     }
 
-
-	public String getDescription() {
+    public String getDescription() {
         return this.description;
-	}
+    }
 
-    public Map<Direction,Locations> getExits(){
+    public Map<Direction, Locations> getExits() {
         return this.exits;
     }
 
@@ -36,16 +34,28 @@ public class Locations {
         return this.title;
     }
 
-    public Direction getNextLocation() {
-        return this.nextLocation;
-    }
-
-    public List<String> getItems() {
+    public List<Items> getItems() {
         return this.items;
     }
 
-    public void addExit(Direction direction, Locations location){
+    public void addExit(Direction direction, Locations location) {
         this.exits.put(direction, location);
     }
 
+    public void addItem(Items item) {
+        this.items.add(item);
+    }
+
+    public Items findItemByName(String name) {
+        for (Items item : this.items) {
+            if (item.getName().equalsIgnoreCase(name)) {
+                return item;
+            }
+        }
+        return null;
+    }
+
+    public void removeItem(Items item) {
+        this.items.remove(item);
+    }
 }
