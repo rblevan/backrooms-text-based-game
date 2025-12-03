@@ -6,6 +6,7 @@ import javax.swing.*;
 import java.util.Arrays;
 import java.util.List;
 import java.util.ArrayList;
+import java.util.Map;
 
 class CommandWords {
     private static final String[] VALID_COMMANDS = {
@@ -94,12 +95,12 @@ public class Commands {
     private String look(String[] args) {
     if (args.length == 0) {
         String description = this.currentLocation.getDescription();
-        List<Items> items = this.currentLocation.getItems();
+        Map<String,Items> items = this.currentLocation.getItems();
 
         String itemsDescription = "";
         if (!items.isEmpty()) {
             List<String> itemNames = new ArrayList<>();
-            for (Items item : items) {
+            for (Items item : items.values()) {
                 itemNames.add(item.getName());
             }
             itemsDescription = "You can also see: " + String.join(", ", itemNames) + ".";
