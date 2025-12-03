@@ -16,7 +16,7 @@ public abstract class Entity {
 
     public Entity(String name,Locations l) {
         if (name == null) {
-            throw new UnsupportedOperationException("Entity(1) error : Parameter cannot be null");
+            throw new UnsupportedOperationException("Entity(2) error : Parameter cannot be null");
         }
         this.PV = DEFAULT_HP;
         this.name = name;
@@ -71,21 +71,21 @@ public abstract class Entity {
 	}
 
 	public void setAttack(int attack) {
-        if (this.attack < 0){
+        if (attack < 0){
             throw new UnsupportedOperationException("Value attack cannot be negative");
         }
 		this.attack = attack;
 	}
 
 	public void setName(String name) {
-        if (this.name == null) {
+        if (name == null) {
             throw new UnsupportedOperationException("Name cannot be null");
         }
 		this.name = name;
 	}
 
     public void setPV(int PV) {
-        if (this.PV < 0) {
+        if (PV < 0) {
             throw new UnsupportedOperationException("PV cannot be negative");
         }
         this.PV = PV;
