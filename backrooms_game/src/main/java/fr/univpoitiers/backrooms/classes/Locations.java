@@ -13,14 +13,12 @@ public class Locations {
     private final String title;
 	private final String description;
     private final Map<Direction,Exits> exits;
-    private Direction nextLocation;
     private List<Items> items;
 
     public Locations(String title, String Description){
         this.title = title;
         this.description = Description;
         this.exits = new HashMap<>();
-        this.nextLocation = null;
         this.items = new ArrayList<>();
     }
 
@@ -29,7 +27,7 @@ public class Locations {
         return this.description;
 	}
 
-    public Map<Direction,Locations> getExits(){
+    public Map<Direction,Exits> getExits(){
         return this.exits;
     }
 
@@ -37,11 +35,7 @@ public class Locations {
         return this.title;
     }
 
-    public Direction getNextLocation() {
-        return this.nextLocation;
-    }
-
-    public List<String> getItems() {
+    public List<Items> getItems() {
         return this.items;
     }
 

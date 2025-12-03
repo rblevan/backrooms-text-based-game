@@ -67,20 +67,21 @@ public class Main {
             // --- 2. Connexion des Exits (Retablies et Complétées) ---
 
             // Level -1 (Grey Corridor)
-            levelMinus1.addExit(Direction.UP, new Exits(levelMinus1, "Return to the endless corridor", false)); // Retour au Level 0
+            levelMinus1.addExit(Direction.WEST, new Exits(levelMinus1, "Return to the endless corridor", false)); // Retour au Level 0
             levelMinus1.addExit(Direction.NORTH, new Exits(level1, "A wooden door leading to Level 1", false));
             levelMinus1.addExit(Direction.SOUTH,  new Exits(level3, "A wooden door leading to Level 3", false));
             levelMinus1.addExit(Direction.EAST, new Exits(level0, "A wooden door leading to Level 0", false));
 
             // Level 0 (Lobby)
             level0.addExit(Direction.NORTH, new Exits(level1, "Staircase going up to Level 1", false));
-            level0.addExit(Direction.DOWN, new Exits(levelMinus1, "A glitching area leading to Level -1", false)); // CONNEXION RETABLIE
+            level0.addExit(Direction.SOUTH, new Exits(levelMinus1, "A glitching area leading to Level -1", false)); // CONNEXION RETABLIE
             level0.addExit(Direction.EAST,  new Exits(realWorld, "A golden door toward the real world", false));
 
             // Level 1 (Living Area)
+
             level1.addExit(Direction.SOUTH, new Exits(level0, "Door to Level 0", false));
             level1.addExit(Direction.EAST, new Exits(level2, "Maintenance door to Level 2", false));
-            level1.addExit(Direction.UP,  new Exits(realWorld, "Golden door to real world", false));
+            level1.addExit(Direction.NORTH,  new Exits(realWorld, "Golden door to real world", false));
 
             // Level 2 (Pipe Dreams)
             level2.addExit(Direction.WEST, new Exits(level1, "Return to Level 1", false));
@@ -92,21 +93,21 @@ public class Main {
             level3.addExit(Direction.EAST,  new Exits(level5, "Rare wooden door to Level 5", false));
 
             // Level 4 (Abandoned Office)
-            level4.addExit(Direction.UP, new Exits(level5, "Stairs up to Level 5", false));
-            level4.addExit(Direction.DOWN, new Exits(level6, "Stairs down to Level 6", false));
+            level4.addExit(Direction.NORTH, new Exits(level5, "Stairs up to Level 5", false));
+            level4.addExit(Direction.SOUTH, new Exits(level6, "Stairs down to Level 6", false));
             level4.addExit(Direction.WEST, new Exits(realWorld, "Golden door to real world", false));
 
             // Level 5 (Terror Hotel)
             level5.addExit(Direction.NORTH,  new Exits(level6, "Boiler room to Level 6", false));
 
             // Level 6 (Lights Out)
-            level6.addExit(Direction.DOWN, new Exits(level7, "Hole leading to Level 7", false));
+            level6.addExit(Direction.SOUTH, new Exits(level7, "Hole leading to Level 7", false));
 
             // Level 7 (Thalassophobia)
             level7.addExit(Direction.NORTH,  new Exits(level8, "Cave opening to Level 8", false));
 
             // Level 8 (Cave System)
-            level8.addExit(Direction.DOWN,  new Exits(level9, "Pitfall to Level 9", false));
+            level8.addExit(Direction.SOUTH,  new Exits(level9, "Pitfall to Level 9", false));
             level8.addExit(Direction.WEST, new Exits(level2, "Vent leading back to Level 2", false));
 
             // Level 9 (The Suburbs)
