@@ -10,9 +10,8 @@ import java.util.Map;
 public class Locations {
 
     private final String title;
-    private final String description;
-    private final Map<Direction, Locations> exits;
-    private Direction nextLocation;
+	private final String description;
+    private final Map<Direction,Exits> exits;
     private List<Items> items;
 
     public Locations(String title, String description) {
@@ -26,7 +25,7 @@ public class Locations {
         return this.description;
     }
 
-    public Map<Direction, Locations> getExits() {
+    public Map<Direction,Exits> getExits(){
         return this.exits;
     }
 
@@ -34,16 +33,12 @@ public class Locations {
         return this.title;
     }
 
-    public Direction getNextLocation() {
-        return this.nextLocation;
-    }
-
     public List<Items> getItems() {
         return this.items;
     }
 
-    public void addExit(Direction direction, Locations location) {
-        this.exits.put(direction, location);
+    public void addExit(Direction direction , Exits exit){
+        this.exits.put(direction,exit);
     }
 
     public Items getItemByName(String name) {

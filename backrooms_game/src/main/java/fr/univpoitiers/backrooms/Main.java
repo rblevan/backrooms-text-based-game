@@ -1,9 +1,6 @@
 package fr.univpoitiers.backrooms;
 
-import fr.univpoitiers.backrooms.classes.Characters; // Non utilisé, remplacé par Hero
-import fr.univpoitiers.backrooms.classes.Commands;
-import fr.univpoitiers.backrooms.classes.Hero;
-import fr.univpoitiers.backrooms.classes.Locations;
+import fr.univpoitiers.backrooms.classes.*;
 import fr.univpoitiers.backrooms.enumeration.Direction;
 
 import javax.swing.SwingUtilities;
@@ -20,7 +17,7 @@ public class Main {
             // --- 1. Instanciation des Niveaux (Locations) ---
 
             // Création des objets de destination spéciaux
-            Locations realWorld = new Locations("MONDE RÉEL", "Vous avez réussi à revenir à la réalité. Mais pour combien de temps ?");
+            Locations realWorld = new Locations("Real World", "Vous avez réussi à revenir à la réalité. Mais pour combien de temps ?");
 
             // Level -1 : Grey Corridor (Unsafe)
             String descM1 = "You have entered a long, straight hallway. The air is immediately glacial, chilling you to the bone. This place is known as 'The Negative Hub'.";
@@ -69,59 +66,52 @@ public class Main {
 
             // --- 2. Connexion des Exits (Retablies et Complétées) ---
 
-            // Level 0 (Lobby)
-            level0.addExit(Direction.NORTH, level1);
-            level0.addExit(Direction.DOWN, levelMinus1); // CONNEXION RETABLIE
-            level0.addExit(Direction.EAST, realWorld);
-
             // Level -1 (Grey Corridor)
-            levelMinus1.addExit(Direction.UP, level0); // Retour au Level 0
-            levelMinus1.addExit(Direction.NORTH, level1);
-            levelMinus1.addExit(Direction.SOUTH, level3);
+            levelMinus1.addExit(Direction.WEST, new Exits(levelMinus1, "Return to the endless corridor", false)); // Retour au Level 0
+            levelMinus1.addExit(Direction.NORTH, new Exits(level1, "A wooden door leading to Level 1", false));
+            levelMinus1.addExit(Direction.SOUTH,  new Exits(level3, "A wooden door leading to Level 3", false));
+            levelMinus1.addExit(Direction.EAST, new Exits(level0, "A wooden door leading to Level 0", false));
+
+            // Level 0 (Lobby)
+            level0.addExit(Direction.NORTH, new Exits(level1, "Staircase going up to Level 1", false));
+            level0.addExit(Direction.SOUTH, new Exits(levelMinus1, "A glitching area leading to Level -1", false)); // CONNEXION RETABLIE
+            level0.addExit(Direction.EAST,  new Exits(realWorld, "A golden door toward the real world", false));
 
             // Level 1 (Living Area)
-            level1.addExit(Direction.SOUTH, level0);
-            level1.addExit(Direction.EAST, level2);
-            level1.addExit(Direction.UP, realWorld);
+
+            level1.addExit(Direction.SOUTH, new Exits(level0, "Door to Level 0", false));
+            level1.addExit(Direction.EAST, new Exits(level2, "Maintenance door to Level 2", false));
+            level1.addExit(Direction.NORTH,  new Exits(realWorld, "Golden door to real world", false));
 
             // Level 2 (Pipe Dreams)
-            level2.addExit(Direction.WEST, level1);
-            level2.addExit(Direction.NORTH, level3);
-            level2.addExit(Direction.EAST, level4);
-            level2.addExit(Direction.UP, level8); // Entrée par les vents
+            level2.addExit(Direction.WEST, new Exits(level1, "Return to Level 1", false));
+            level2.addExit(Direction.NORTH, new Exits(level3, "Fire exit to Level 3", false));
+            level2.addExit(Direction.EAST, new Exits(level4, "Old corridor toward Level 4", false));
 
             // Level 3 (Electrical Station)
-            level3.addExit(Direction.SOUTH, level2);
-            level3.addExit(Direction.NORTH, level4);
-            level3.addExit(Direction.EAST, level5);
-            level3.addExit(Direction.WEST, levelMinus1); // Retour vers L-1 (Exits L-1)
+            level3.addExit(Direction.NORTH,  new Exits(level4, "Elevator to Level 4", false));
+            level3.addExit(Direction.EAST,  new Exits(level5, "Rare wooden door to Level 5", false));
 
             // Level 4 (Abandoned Office)
-            level4.addExit(Direction.SOUTH, level3);
-            level4.addExit(Direction.UP, level5);
-            level4.addExit(Direction.DOWN, level6);
-            level4.addExit(Direction.WEST, realWorld);
+            level4.addExit(Direction.NORTH, new Exits(level5, "Stairs up to Level 5", false));
+            level4.addExit(Direction.SOUTH, new Exits(level6, "Stairs down to Level 6", false));
+            level4.addExit(Direction.WEST, new Exits(realWorld, "Golden door to real world", false));
 
             // Level 5 (Terror Hotel)
-            level5.addExit(Direction.SOUTH, level4); // Retour
-            level5.addExit(Direction.NORTH, level6);
+            level5.addExit(Direction.NORTH,  new Exits(level6, "Boiler room to Level 6", false));
 
             // Level 6 (Lights Out)
-            level6.addExit(Direction.SOUTH, level5);
-            level6.addExit(Direction.DOWN, level7);
+            level6.addExit(Direction.SOUTH, new Exits(level7, "Hole leading to Level 7", false));
 
             // Level 7 (Thalassophobia)
-            level7.addExit(Direction.UP, level6); // Retour
-            level7.addExit(Direction.NORTH, level8);
+            level7.addExit(Direction.NORTH,  new Exits(level8, "Cave opening to Level 8", false));
 
             // Level 8 (Cave System)
-            level8.addExit(Direction.SOUTH, level7);
-            level8.addExit(Direction.DOWN, level9);
-            level8.addExit(Direction.WEST, level2); // Sortie vers L2 par les vents
+            level8.addExit(Direction.SOUTH,  new Exits(level9, "Pitfall to Level 9", false));
+            level8.addExit(Direction.WEST, new Exits(level2, "Vent leading back to Level 2", false));
 
             // Level 9 (The Suburbs)
-            level9.addExit(Direction.UP, level8); // Retour
-            level9.addExit(Direction.EAST, realWorld);
+            level9.addExit(Direction.EAST, new Exits(realWorld, "Golden door to real world", false));
 
 
             // --- 3. Initialisation du Joueur et du Jeu ---
@@ -141,6 +131,6 @@ public class Main {
             //gameWindow.appendText("--- " + player.getCurrentLocation().getTitle() + " ---\n");
             //gameWindow.appendText(player.getCurrentLocation().getDescription() + "\n");
 
-        }); // Fin du bloc lambda SwingUtilities
-    } // Fin de la méthode main
-} // Fin de la classe Main
+        });
+    }
+}
