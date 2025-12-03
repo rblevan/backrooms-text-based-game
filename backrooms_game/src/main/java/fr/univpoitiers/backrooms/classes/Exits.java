@@ -1,5 +1,7 @@
 package fr.univpoitiers.backrooms.classes;
 
+import fr.univpoitiers.backrooms.enumeration.Direction;
+
 public class Exits {
 
     private final Locations destination;
