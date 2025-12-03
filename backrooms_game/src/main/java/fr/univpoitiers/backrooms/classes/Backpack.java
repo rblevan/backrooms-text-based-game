@@ -1,45 +1,30 @@
 package fr.univpoitiers.backrooms.classes;
 
-import fr.univpoitiers.backrooms.interfaces.Items;
-
 import java.util.ArrayList;
 import java.util.List;
 
-public class Backpack implements Items {
+public class Backpack extends  Items {
     private static final int DEFAULT_CAPACITY = 100;
     private static final int BACKPACK_PHYSICAL_VOLUME = 10;
 
-    private final String name;
-    private String description;
     private int capacity;
     private List<Items> items;
     private int usedVolume;
     private final int itemVolume;
 
-    public Backpack(String description) {
-        this.name = "Backpack";
-        this.description = description;
-        this.capacity = DEFAULT_CAPACITY;
+    public Backpack(String name, String description, int capacity) {
+        super(name, BACKPACK_PHYSICAL_VOLUME, description);
+        this.capacity = capacity;
         this.items = new ArrayList<>();
         this.usedVolume = 0;
-        this.itemVolume = BACKPACK_PHYSICAL_VOLUME; // Initialisation
+        this.itemVolume = BACKPACK_PHYSICAL_VOLUME;
     }
 
-    @Override
-    public String getName() {
-        return this.name;
-    }
 
-    @Override
     public int getVolume() {
         return this.itemVolume; // Retourne sa taille, pas sa capacité
     }
 
-    @Override
-    public String getDescription() {
-        // Retourne la description spécifique du sac, pas une chaîne vide
-        return this.description;
-    }
 
     public int getUsedVolume() {
         return this.usedVolume;
@@ -94,5 +79,14 @@ public class Backpack implements Items {
 
     public boolean isEmpty() {
         return this.items.isEmpty();
+    }
+
+    public Items getItemByName(String name) {
+        for (Items item : this.items) {
+            if (item.getName().equalsIgnoreCase(name)) {
+                return item;
+            }
+        }
+        return null;
     }
 }
