@@ -16,4 +16,14 @@ public class Weapon extends Items {
     public void Attack (Entity entity){
         entity.setPV(entity.getPV() - this.damage);
     }
+
+    @Override
+    public String use(Hero player) {
+        return "";
+    }
+
+    @Override
+    public String useWith(Items target, Hero player) {
+        return "";
+    }
 }
