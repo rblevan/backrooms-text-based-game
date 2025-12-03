@@ -16,7 +16,7 @@ public class GameWindow extends JFrame {
     private final Commands commands;
 
     private final Queue<String> textQueue = new LinkedList<>();
-    private String currentTextToType; // The text currently being typed.
+    private String currentTextToType;
     private int charIndex;
 
     public GameWindow(Commands commands) {
@@ -27,7 +27,7 @@ public class GameWindow extends JFrame {
         setSize(800, 600);
         setResizable(false);
 
-        // UI Components
+        // --- UI Components ---
         Color backgroundColor = Color.BLACK;
         Color textColor = Color.WHITE;
         Font font = new Font("Monospaced", Font.PLAIN, 14);
@@ -84,6 +84,15 @@ public class GameWindow extends JFrame {
                 inputField.setText("");
 
                 String result = this.commands.processCommand(command);
+
+                if ("QUIT_GAME".equals(result)) {
+                    // This is the signal to close the game.
+                    // dispose() closes the window and releases its resources.
+                    // Because we set EXIT_ON_CLOSE, this will also terminate the application.
+                    dispose();
+                    return;
+                }
+
                 if (result != null && !result.trim().isEmpty()) {
                     appendText(result + "\n");
                 }
@@ -94,18 +103,15 @@ public class GameWindow extends JFrame {
         typewriterTimer = new Timer(delay, e -> {
             // Check if we have finished the current text
             if (currentTextToType == null || charIndex >= currentTextToType.length()) {
-                // Try to get the next text from the queue
-                currentTextToType = textQueue.poll(); // poll() returns null if the queue is empty
-                charIndex = 0; // Reset for the new text
+                currentTextToType = textQueue.poll();
+                charIndex = 0;
 
-                // If the queue was empty, there's nothing more to do. Stop the timer.
                 if (currentTextToType == null) {
                     typewriterTimer.stop();
-                    return; // Exit the action listener for this tick
+                    return;
                 }
             }
 
-            // If we are here, we have text to type. Append one character.
             textArea.append(String.valueOf(currentTextToType.charAt(charIndex)));
             textArea.setCaretPosition(textArea.getDocument().getLength());
             charIndex++;
@@ -115,19 +121,12 @@ public class GameWindow extends JFrame {
         setVisible(true);
     }
 
-    /**
-     * NEW: Adds text to a queue to be displayed sequentially.
-     * Starts the typewriter effect if it's not already running.
-     * @param text The text to append.
-     */
     public void appendText(final String text) {
         if (text == null || text.isEmpty()) {
-            return; // Don't add empty text to the queue
+            return;
         }
-        textQueue.add(text); // Add the new text to the end of the queue
+        textQueue.add(text);
 
-        // If the timer isn't already running, start it.
-        // It will then automatically pick up the text from the queue.
         if (!typewriterTimer.isRunning()) {
             typewriterTimer.start();
         }
