@@ -3,6 +3,7 @@ package fr.univpoitiers.backrooms.classes;
 import javax.swing.*;
 import java.util.Arrays;
 import java.util.List;
+import java.util.ArrayList;
 
 class CommandWords {
     private static final String[] VALID_COMMANDS = {
@@ -49,11 +50,12 @@ public class Commands {
             return "Unknown command. Type HELP for a list of commands.";
         }
 
+        // Execute the base command
         switch (commandWord) {
             case "GO":
                 return go(args);
             case "HELP":
-                return help(args);
+                return help();
             case "LOOK":
                 return look(args);
             case "ATTACK":
@@ -63,7 +65,7 @@ public class Commands {
             case "USE":
                 return use(args);
             case "QUIT":
-                return quit(args);
+                return quit();
             default:
                 return "Internal execution error.";
         }
@@ -74,23 +76,58 @@ public class Commands {
             return "Go where? Specify a direction or a place.";
         }
         String direction = args[0];
-        // TODO: Implement logic to find the next location based on 'direction'
-        // and update this.currentLocation.
-        return "You try to go " + direction + "... (Not implemented)";
+        if (this.currentLocation.getExits().containsKey(direction)){
+            this.currentLocation = this.currentLocation.getExits().get(direction);
+         return "You go " + direction + ".";
+        }
+        else{
+            return "You can't go that way. Try another direction. (NORTH, SOUTH, EAST, WEST, UP, DOWN)";
+        }
     }
 
-    private String help(String[] args) {
+    private String help() {
         return "Available commands are: " + commandList;
     }
 
     private String look(String[] args) {
-        if (args.length == 0) {
-            return this.currentLocation.getDescription();
+    if (args.length == 0) {
+        String description = this.currentLocation.getDescription();
+        List<Items> items = this.currentLocation.getItems();
+
+        String itemsDescription = "";
+        if (!items.isEmpty()) {
+            List<String> itemNames = new ArrayList<>();
+            for (Items item : items) {
+                itemNames.add(item.getName());
+            }
+            itemsDescription = "You can also see: " + String.join(", ", itemNames) + ".";
+        } else {
+            itemsDescription = "There are no notable objects here.";
         }
-        String objectToLookAt = args[0];
-        // TODO: Implement logic to find 'objectToLookAt' and return its description.
-        return "You look at " + objectToLookAt + "... (Not implemented)";
+
+        return description + "\n" + itemsDescription;
     }
+
+    // Regarder un objet spécifique (LOOK [objet])
+    String objectToLookAtName = args[0];
+    Items targetItem = null;
+
+    // Chercher dans l'emplacement actuel
+    targetItem = this.currentLocation.getItemByName(objectToLookAtName);
+
+    // Si pas trouvé, chercher dans l'inventaire du joueur
+    if (targetItem == null) {
+        // Cette méthode doit être implémentée dans la classe de l'inventaire/sac à dos
+        targetItem = this.player.getBackpack().getItemByName(objectToLookAtName);
+    }
+
+    // Si l'objet est trouvé, utiliser sa méthode getDescription()
+    if (targetItem != null) {
+        return targetItem.getDescription();
+    } else {
+        return "You don't see " + objectToLookAtName + " here or in your backpack.";
+    }
+}
 
     private String attack(String[] args) {
         if (args.length == 0) {
@@ -129,7 +166,10 @@ public class Commands {
         return "You try to use " + itemName + ". (Not implemented)";
     }
 
-    private String quit(String[] args) {
+    private String quit() {
+        // This command should probably signal the main game loop to exit.
+        // For now, we can just return a message. A better way is to have a special return value.
+        // We will use "QUIT_GAME" as a special signal.
         return "QUIT_GAME";
     }
 }

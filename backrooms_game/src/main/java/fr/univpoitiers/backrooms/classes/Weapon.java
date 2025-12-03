@@ -1,39 +1,16 @@
 package fr.univpoitiers.backrooms.classes;
 
-import fr.univpoitiers.backrooms.interfaces.Items;
 
-public class Weapon implements Items {
-    private String name;
-    private int volume;
-    private String description;
+public class Weapon extends Items {
     private int damage;
 
-    public Weapon(String name, int volume, int damage) {
-        if (name == null || volume < 0 || damage < 0) {
-            throw new UnsupportedOperationException("Weapon(4) error : Parameters cannot be null or negative");
-        }
-        this.name = name;
-        this.volume = volume;
+    public Weapon(String name, int volume, String description, int damage) {
+        super(name, volume, description);
         this.damage = damage;
     }
 
-    @Override
-    public String getDescription() {
-        return description;
-    }
-
-    @Override
-    public int getVolume() {
-        return volume;
-    }
-
-    @Override
-    public String getName() {
-        return name;
-    }
-
     public int getDamage() {
-        return damage;
+        return this.damage;
     }
 
     public void Attack (Entity entity){
