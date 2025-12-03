@@ -76,7 +76,7 @@ public class Commands {
 
     private String go(String[] args) {
         if (args.length == 0) {
-            return "Go where? Specify a direction or a place.";
+            return "Go where? Specify a direction or a place. The directions are: NORTH, SOUTH, EAST, WEST.";
         }
         Direction direction = Direction.valueOf(args[0]);
         if (this.currentLocation.getExits().containsKey(direction)){
@@ -164,15 +164,31 @@ public class Commands {
         if (args.length == 0) {
             return "Use what?";
         }
-        String itemName = args[0];
-        // TODO: Implement the 'use' logic based on our design.
-        return "You try to use " + itemName + ". (Not implemented)";
+        String itemName1 = args[0];
+
+        if (args.length == 1) {
+            Items itemToUse = player.getBackpack().getItemByName(itemName1);
+            if (itemToUse == null) {
+                return "You don't have a " + itemName1 + ".";
+            }
+            return itemToUse.use(player);
+        }
+
+        String itemName2 = args[1];
+        Items item1 = player.getBackpack().getItemByName(itemName1);
+        Items item2 = player.getBackpack().getItemByName(itemName2);
+
+        if (item1 == null) {
+            return "You don't have a " + itemName1 + ".";
+        }
+        if (item2 == null) {
+            return "You don't have a " + itemName2 + ".";
+        }
+
+        return item1.useWith(item2, player);
     }
 
     private String quit() {
-        // This command should probably signal the main game loop to exit.
-        // For now, we can just return a message. A better way is to have a special return value.
-        // We will use "QUIT_GAME" as a special signal.
         return "QUIT_GAME";
     }
 }

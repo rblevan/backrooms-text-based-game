@@ -1,34 +1,35 @@
 package fr.univpoitiers.backrooms.classes;
 
-public abstract class  Items {
+public abstract class Items {
 
-	private String Name;
-	private int Volume;
-	private String Description;
+    private String Name;
+    private int Volume;
+    private String Description;
 
-	public Items(String name, int volume, String description) {
-		if (name == null || volume < 0 || description == null) {
-			throw new UnsupportedOperationException("Items(3) error : Parameters cannot be null or negative");
-		}
-		this.Name = name;
-		this.Volume = volume;
-		this.Description = description;
-	}
+    public Items(String name, int volume, String description) {
+        if (name == null || volume < 0 || description == null) {
+            throw new UnsupportedOperationException("Items(3) error : Parameters cannot be null or negative");
+        }
+        this.Name = name;
+        this.Volume = volume;
+        this.Description = description;
+    }
 
+    public String getName() {
+        return this.Name;
+    }
 
-	public String getName()
-	{
-		return this.Name;
-	}
+    public int getVolume() {
+        return this.Volume;
+    }
 
-	public int getVolume()
-	{
-		return this.Volume;
-	}
+    public String getDescription() {
+        return this.Description;
+    }
 
-	public String getDescription()
-	{
-		return this.Description;
-	}
+    public abstract String use(Hero player);
 
+    public String useWith(Items target, Hero player) {
+        return "Nothing interesting happens when you use " + this.getName() + " with " + target.getName() + ".";
+    }
 }

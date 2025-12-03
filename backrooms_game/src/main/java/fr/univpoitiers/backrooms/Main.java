@@ -143,21 +143,11 @@ public class Main {
 
             realWorld.addItem(new Spells("REALITY_ANCHOR", 1, "A spell stabilizing your presence in the real world."));
 
-
-
-
-
-
-
-
-
-
-
-
             // --- 3. Initialisation du Joueur et du Jeu ---
 
             // Initialisation du joueur : NOM + Position de départ (Level 0)
-            Hero player = new Hero("Anonyme", level0); // Nécessite un constructeur Hero(String name, Locations startLocation)
+            Backpack backpack = new Backpack("Blue backpack","A standard backpack", 120);
+            Hero player = new Hero(10,"Anonyme",20, "beautiful man or woman", level0, backpack); // Nécessite un constructeur Hero(String name, Locations startLocation)
 
             Commands commandProcessor = new Commands(player, level0); // Le processeur de commandes a besoin du joueur
             GameWindow gameWindow = new GameWindow(commandProcessor);

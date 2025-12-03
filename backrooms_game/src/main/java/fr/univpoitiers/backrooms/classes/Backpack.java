@@ -3,7 +3,7 @@ package fr.univpoitiers.backrooms.classes;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Backpack extends  Items {
+public class Backpack extends Items {
     private static final int DEFAULT_CAPACITY = 100;
     private static final int BACKPACK_PHYSICAL_VOLUME = 10;
 
@@ -43,7 +43,7 @@ public class Backpack extends  Items {
 
         if (this.usedVolume + itemVolume <= this.capacity) {
             this.items.add(item);
-            this.usedVolume += itemVolume; // CORRECTION : Mise à jour du volume utilisé
+            this.usedVolume += itemVolume;
             return true;
         }
         return false;
@@ -51,7 +51,7 @@ public class Backpack extends  Items {
 
     public void removeItem(Items item) {
         if (this.items.remove(item)) {
-            this.usedVolume -= item.getVolume(); // CORRECTION : Mise à jour du volume utilisé
+            this.usedVolume -= item.getVolume();
         }
     }
 
@@ -61,10 +61,9 @@ public class Backpack extends  Items {
 
     public void setItems(List<Items> items) {
         this.items = items;
-        this.updateUsedVolume(); // Nouvelle méthode pour calculer le volume total
+        this.updateUsedVolume();
     }
 
-    // Méthode utilitaire pour recalculer le volume utilisé
     private void updateUsedVolume() {
         this.usedVolume = 0;
         for (Items item : this.items) {
@@ -89,4 +88,15 @@ public class Backpack extends  Items {
         }
         return null;
     }
+
+    @Override
+    public String use(Hero player) {
+        return "";
+    }
+
+    @Override
+    public String useWith(Items target, Hero player) {
+        return "";
+    }
+
 }
