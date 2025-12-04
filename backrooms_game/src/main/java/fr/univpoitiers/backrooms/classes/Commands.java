@@ -58,6 +58,8 @@ public class Commands {
                 return help();
             case "LOOK":
                 return look(args);
+            case "ATTACK":
+                return attack(args);
             case "TAKE":
                 return take(args);
             case "USE":
@@ -164,6 +166,34 @@ public class Commands {
         return "You don't see " + objectToLookAtName + " here or in your backpack.";
     }
 
+    private String attack(String[] args) {
+        if (args.length < 2) {
+            return "Attack what with what? Usage: ATTACK [weapon] [target]";
+        }
+
+        String weaponName = args[0];
+        String targetName = args[1];
+
+        // Cherche l'arme dans le sac
+        Items item = player.getBackpack().getItemByName(weaponName);
+        if (item == null) {
+            return "You don't have a " + weaponName + ".";
+        }
+
+        // Vérifie que c'est bien une arme
+        if (!(item instanceof Weapon)) {
+            return weaponName + " is not a weapon!";
+        }
+
+        // Cherche la cible
+        Entity target = currentLocation.getCharacterByName(targetName);
+        if (target == null) {
+            return "There is no " + targetName + " here.";
+        }
+
+        // --- Message narratif simple pour l'attaque ---
+        return ((Weapon) item).use(player, target);
+    }
 
     private String take(String[] args) {
         if (args.length == 0) {
@@ -211,11 +241,6 @@ public class Commands {
 
         if (target == null) {
             return "There is no " + targetName + " here.";
-        }
-
-        // --- Weapon : attaque sur cible ---
-        if (item instanceof Weapon) {
-            return ((Weapon) item).use(player, target);
         }
 
         // --- Spells : sort lancé sur cible ---
