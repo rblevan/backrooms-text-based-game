@@ -22,7 +22,7 @@ public class Backpack extends Items {
 
 
     public int getVolume() {
-        return this.itemVolume; // Retourne sa taille, pas sa capacité
+        return this.itemVolume; 
     }
 
 
