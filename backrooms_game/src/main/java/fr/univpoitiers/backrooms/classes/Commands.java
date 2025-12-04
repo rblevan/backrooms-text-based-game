@@ -78,11 +78,13 @@ public class Commands {
     //GO command, to go in a specified direction
     private String go(String[] args) {
         if (args.length == 0) {
-            return "Go where? Specify a direction or a place. The directions are: NORTH, SOUTH, EAST, WEST.";
+
+            return "Go where? Usage: GO [direction]\n The directions are: NORTH, SOUTH, EAST, WEST.";
         }
         Direction direction = Direction.valueOf(args[0]);
         if (this.currentLocation.getExits().containsKey(direction)){
             this.currentLocation = this.currentLocation.getExits().get(direction).getDestination();
+            this.player.setLocation(this.currentLocation);
          return "You go " + direction + ".";
         }
         else {
@@ -148,7 +150,7 @@ public class Commands {
             }
 
             List<String> itemNames = new ArrayList<>();
-            for (Items item : items.values()) {
+            for (Items item : items) {
                 itemNames.add(item.getName());
             }
 
@@ -206,7 +208,7 @@ public class Commands {
     private String take(String[] args) {
         //no argument, return error message
         if (args.length == 0) {
-            return "Take what?";
+            return "Take what? Usage: TAKE [item]";
         }
         String itemName = args[0];
         Items itemToTake = currentLocation.getItemByName(itemName);
@@ -229,7 +231,7 @@ public class Commands {
     private String use(String[] args) {
         //no argument, return error message
         if (args.length == 0) {
-            return "Use what?";
+            return "Use what? Usage: USE [item] or USE [item] [target]";
         }
 
         String itemName = args[0];
@@ -246,7 +248,7 @@ public class Commands {
 
         // --- other items need a target ---
         if (args.length < 2) {
-            return "You need to specify a target.";
+            return "This item requires a target. Usage: USE [item] [target]";
         }
 
         String targetName = args[1];

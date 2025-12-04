@@ -175,7 +175,7 @@ public class Main {
 
             // Initialization of the player: NAME + Starting position (Level 0)
             Backpack backpack = new Backpack("Blue backpack","A standard backpack", 120);
-            Hero player = new Hero(playerName, 100,"Everyman",20, "an ordinary person who has lived a quiet, unremarkable life—working, waiting, hoping, repeating the same familiar routines day after day.\n\n", backpack, level0); // Requires a Hero(String name, Locations startLocation) constructor
+            Hero player = new Hero(playerName, 100,playerName,20, "an ordinary person who has lived a quiet, unremarkable life—working, waiting, hoping, repeating the same familiar routines day after day.\n\n", backpack, level0); // Requires a Hero(String name, Locations startLocation) constructor
 
             Commands commandProcessor = new Commands(player, player.getLocation()); // The command processor needs the player
             GameWindow gameWindow = new GameWindow(commandProcessor);
@@ -185,7 +185,7 @@ public class Main {
             gameWindow.appendText("Welcome " + player.getUsername().toUpperCase() + " to the Backrooms.\n");
             gameWindow.appendText("You awaken as " + player.getName() + ", " + player.getDescription() + player.getLocation().getDescription() + ".\n\n");
             gameWindow.appendText("Health: "+ player.getPV() + "/" + player.getMax_hp() + "HP\n" +
-                    "Backpack is empty. Capacity: " + player.getBackpack().getUsedVolume() + "/" + player.getBackpack().getCapacityMax() + "units");
+                    "Backpack is empty. Capacity: " + player.getBackpack().getUsedVolume() + "/" + player.getBackpack().getCapacityMax() + "units\n");
 
             gameWindow.appendText("");
 

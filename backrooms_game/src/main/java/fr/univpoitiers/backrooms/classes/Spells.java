@@ -7,19 +7,13 @@ public class Spells extends Items {
     }
 
     @Override
-    public String getName() {
-        return null;
-    }
+    public String getName() {return super.getName();}
 
     @Override
-    public int getVolume() {
-        return 0;
-    }
+    public int getVolume() {return super.getVolume();}
 
     @Override
-    public String getDescription() {
-        return null;
-    }
+    public String getDescription() {return super.getDescription();}
 
     public String cast(Hero player) {
         return "You cast " + this.getName() + ". " + this.getDescription();

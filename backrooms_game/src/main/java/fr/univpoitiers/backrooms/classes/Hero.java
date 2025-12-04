@@ -21,6 +21,7 @@ public class Hero extends Entity {
         return username;
     }
 
+    public void setLocation(Locations location) {this.location = location;}
 
     public Locations getLocation() {
         return location;

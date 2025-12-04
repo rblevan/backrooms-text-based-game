@@ -1,142 +1,89 @@
 package fr.univpoitiers.backrooms.classesTest;
 
 import fr.univpoitiers.backrooms.classes.Entity;
-import fr.univpoitiers.backrooms.classes.Locations;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-
 import static org.junit.jupiter.api.Assertions.*;
 
-public class EntityTest {
-
-    private static class ConcreteEntity extends Entity {
-        public ConcreteEntity(String name, Locations location) {
-            super(name, location);
-        }
-        public ConcreteEntity(String description, String name, Locations location) {
-            super(description, name, location);
-        }
-        public ConcreteEntity(int PV, String name, int attack, String description, Locations location) {
-            super(PV, name, attack, description, location);
-        }
+// Concrete subclass for testing abstract Entity class
+class ConcreteEntity extends Entity {
+    public ConcreteEntity(String description, String name) {
+        super(description, name);
     }
 
-    private Locations testLocation;
+    public ConcreteEntity(int PV, String name, int attack, String description) {
+        super(PV, name, attack, description);
+    }
+}
+
+class EntityTest {
+
+    private Entity entity1;
+    private Entity entity2;
 
     @BeforeEach
     void setUp() {
-        testLocation = new Locations("- Test Room -", "A room for testing.");
-    }
-
-    // --- CONSTRUCTOR TESTS ---
-
-    @Test
-    void testConstructorWithTwoArgs_Success() {
-        ConcreteEntity entity = new ConcreteEntity("Player", testLocation);
-        assertEquals(100, entity.getPV());
-        assertEquals(30, entity.getAttack());
-        assertEquals("Player", entity.getName());
-        assertNotNull(entity.getDescription());
+        entity1 = new ConcreteEntity("A brave warrior", "Hero");
+        entity2 = new ConcreteEntity(150, "Dragon", 40, "A fearsome dragon");
     }
 
     @Test
-    void testConstructorWithTwoArgs_Failure_NullName() {
-        try {
-            new ConcreteEntity(null, testLocation);
-            fail("Expected UnsupportedOperationException was not thrown.");
-        } catch (UnsupportedOperationException e) {
-            assertEquals("Entity(2) error : Parameter cannot be null", e.getMessage());
-        }
+    void testDefaultConstructor() {
+        assertEquals(100, entity1.getPV());
+        assertEquals("Hero", entity1.getName());
+        assertEquals(30, entity1.getAttack());
+        assertEquals("A brave warrior", entity1.getDescription());
+        assertEquals(100, entity1.getMax_hp());
     }
 
     @Test
-    void testConstructorWithThreeArgs_Success() {
-        ConcreteEntity entity = new ConcreteEntity("A small green creature.", "Goblin", testLocation);
-        assertEquals(100, entity.getPV());
-        assertEquals(30, entity.getAttack());
-        assertEquals("Goblin", entity.getName());
-        assertEquals("A small green creature.", entity.getDescription());
+    void testFullConstructor() {
+        assertEquals(150, entity2.getPV());
+        assertEquals("Dragon", entity2.getName());
+        assertEquals(40, entity2.getAttack());
+        assertEquals("A fearsome dragon", entity2.getDescription());
+        assertEquals(150, entity2.getMax_hp());
     }
 
     @Test
-    void testConstructorWithThreeArgs_Failure_NullDescription() {
-        try {
-            new ConcreteEntity(null, "Goblin", testLocation);
-            fail("Expected UnsupportedOperationException was not thrown.");
-        } catch (UnsupportedOperationException e) {
-            assertEquals("Entity(3) error : Parameters cannot be null", e.getMessage());
-        }
+    void testSettersAndGetters() {
+        entity1.setPV(80);
+        assertEquals(80, entity1.getPV());
+
+        entity1.setName("NewHero");
+        assertEquals("NewHero", entity1.getName());
+
+        entity1.setAttack(35);
+        assertEquals(35, entity1.getAttack());
+
+        entity1.setDescription("An even braver warrior");
+        assertEquals("An even braver warrior", entity1.getDescription());
     }
 
     @Test
-    void testConstructorWithFiveArgs_Success() {
-        ConcreteEntity entity = new ConcreteEntity(50, "Goblin", 15, "A small green creature.", testLocation);
-        assertEquals(50, entity.getPV());
-        assertEquals(15, entity.getAttack());
-        assertEquals("Goblin", entity.getName());
-        assertEquals("A small green creature.", entity.getDescription());
+    void testTakeDamage() {
+        int initialPV = entity2.getPV();
+        entity2.takeDamage(20);
+        assertEquals(initialPV - 20, entity2.getPV());
     }
 
     @Test
-    void testConstructorWithFiveArgs_Failure_NegativePV() {
-        try {
-            new ConcreteEntity(-10, "Ghost", 20, "A spooky ghost.", testLocation);
-            fail("Expected UnsupportedOperationException was not thrown for negative PV.");
-        } catch (UnsupportedOperationException e) {
-            assertEquals("Entity(5) error : Parameters cannot be null or negative", e.getMessage());
-        }
+    void testSetNegativeValues() {
+        assertThrows(UnsupportedOperationException.class, () -> entity1.setPV(-10));
+        assertThrows(UnsupportedOperationException.class, () -> entity1.setAttack(-5));
     }
 
     @Test
-    void testConstructorWithFiveArgs_Failure_NegativeAttack() {
-        try {
-            new ConcreteEntity(80, "Goblin", -5, "A small green creature.", testLocation);
-            fail("Expected UnsupportedOperationException was not thrown for negative attack.");
-        } catch (UnsupportedOperationException e) {
-            assertEquals("Entity(5) error : Parameters cannot be null or negative", e.getMessage());
-        }
-    }
-
-    // --- SETTER TESTS ---
-
-    @Test
-    void testSetPV_Success() {
-        ConcreteEntity entity = new ConcreteEntity("Test", testLocation);
-        entity.setPV(80);
-        assertEquals(80, entity.getPV());
+    void testSetNullValues() {
+        assertThrows(UnsupportedOperationException.class, () -> entity1.setName(null));
+        assertThrows(UnsupportedOperationException.class, () -> entity1.setDescription(null));
     }
 
     @Test
-    void testSetPV_Failure_NegativeValue() {
-        ConcreteEntity entity = new ConcreteEntity("Test", testLocation);
-        try {
-            entity.setPV(-50);
-            fail("Expected UnsupportedOperationException was not thrown for setPV.");
-        } catch (UnsupportedOperationException e) {
-            assertEquals("PV cannot be negative", e.getMessage());
-        }
-    }
-
-    @Test
-    void testSetAttack_Failure_NegativeValue() {
-        ConcreteEntity entity = new ConcreteEntity("Test", testLocation);
-        try {
-            entity.setAttack(-20);
-
-            fail("Expected UnsupportedOperationException was not thrown for setAttack.");
-        } catch (UnsupportedOperationException e) {
-            assertEquals("Value attack cannot be negative", e.getMessage());
-        }
-    }
-
-    @Test
-    void testSetName_Failure_NullValue() {
-        ConcreteEntity entity = new ConcreteEntity("Test", testLocation);
-        try {
-            entity.setName(null);
-            fail("Expected UnsupportedOperationException was not thrown for setName.");
-        } catch (UnsupportedOperationException e) {
-            assertEquals("Name cannot be null", e.getMessage());
-        }
+    void testConstructorWithInvalidValues() {
+        assertThrows(UnsupportedOperationException.class, () -> new ConcreteEntity(-100, "Invalid", 20, "Invalid desc"));
+        assertThrows(UnsupportedOperationException.class, () -> new ConcreteEntity(100, "Invalid", -20, "Invalid desc"));
+        assertThrows(UnsupportedOperationException.class, () -> new ConcreteEntity(null, "Invalid"));
+        assertThrows(UnsupportedOperationException.class, () -> new ConcreteEntity("Invalid desc", null));
     }
 }
