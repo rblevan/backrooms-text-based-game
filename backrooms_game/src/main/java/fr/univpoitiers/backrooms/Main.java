@@ -3,7 +3,7 @@ package fr.univpoitiers.backrooms;
 import fr.univpoitiers.backrooms.classes.*;
 import fr.univpoitiers.backrooms.enumeration.Direction;
 
-import javax.swing.SwingUtilities;
+import javax.swing.*;
 import java.util.Random;
 
 
@@ -114,7 +114,7 @@ public class Main {
 
             level0.addItem(new Food("ALMOND_WATER", 1, "Sweet, refreshing and calming.", 20));
             level0.addItem(new Food("ENERGY_BAR", 1, "A dense bar full of calories.", 10));
-            level0.addItem(new Weapon("FLASHLIGHT", 1, "A weak flashlight. Can stun small entities.", 5));
+            level0.addItem(new Weapon("IRON_ROD", 2, "A solid metal rod, good for basic self-defense.", 8));
 
             level1.addItem(new Weapon("CROWBAR", 3, "A solid metal tool for defense.", 15));
             level1.addItem(new Food("LUNCHBOX_SANDWICH", 1, "A stale but edible sandwich.", 12));
@@ -143,19 +143,51 @@ public class Main {
 
             realWorld.addItem(new Spells("REALITY_ANCHOR", 1, "A spell stabilizing your presence in the real world."));
 
+            Characters lurker = new Characters(35,"The_Lurker",5, "A tall, thin creature that stalks silently from the shadows.");
+
+            Characters redHands = new Characters(50, "The_Red_Hands", 3, "A burned electrical humanoid with crackling fingers.");
+
+            Characters drownedMaiden = new Characters(60, "The_Drowned_Maiden", 4, "A drowned woman dripping black water, able to pull victims into unseen depths.");
+
+            Characters crawlingChoir = new Characters(80, "The_Crawling_Choir", 6, "A mass of twisted bodies on the ceiling, whispering in maddening harmony.");
+
+            Characters facelessCaretaker = new Characters(70, "The_Faceless_Caretaker", 4, "A silent hotel butler with no face, enforcing unknown rules with violent precision.");
+
+            level1.addCharacter(lurker);
+            level3.addCharacter(redHands);
+            level7.addCharacter(drownedMaiden);
+            level8.addCharacter(crawlingChoir);
+            level5.addCharacter(facelessCaretaker);
+
+
             // --- 3. Initialisation du Joueur et du Jeu ---
+
+            String playerName = JOptionPane.showInputDialog(
+                    null,
+                    "Enter your name:",
+                    "Backrooms - Character Creation",
+                    JOptionPane.QUESTION_MESSAGE
+            );
+
+            if (playerName == null || playerName.trim().isEmpty()) {
+                playerName = "Anonymous";
+            }
 
             // Initialisation du joueur : NOM + Position de départ (Level 0)
             Backpack backpack = new Backpack("Blue backpack","A standard backpack", 120);
-            Hero player = new Hero(10,"Anonyme",20, "beautiful man or woman", level0, backpack); // Nécessite un constructeur Hero(String name, Locations startLocation)
+            Hero player = new Hero(playerName, 100,"Everyman",20, "an ordinary person who has lived a quiet, unremarkable life—working, waiting, hoping, repeating the same familiar routines day after day.\n\n", backpack, level0); // Nécessite un constructeur Hero(String name, Locations startLocation)
 
-            Commands commandProcessor = new Commands(player, level0); // Le processeur de commandes a besoin du joueur
+            Commands commandProcessor = new Commands(player, player.getLocation()); // Le processeur de commandes a besoin du joueur
             GameWindow gameWindow = new GameWindow(commandProcessor);
 
             // --- 4. Affichage Initial ---
 
-            gameWindow.appendText("Welcome to the Backrooms.\n");
-            gameWindow.appendText("You find yourself in a strange place...\n\n");
+            gameWindow.appendText("Welcome " + player.getUsername().toUpperCase() + " to the Backrooms.\n");
+            gameWindow.appendText("You awaken as " + player.getName() + ", " + player.getDescription() + player.getLocation().getDescription() + ".\n\n");
+            gameWindow.appendText("Health: "+ player.getPV() + "/" + player.getMax_hp() + "HP\n" +
+                    "Backpack is empty. Capacity: " + player.getBackpack().getUsedVolume() + "/" + player.getBackpack().getCapacityMax() + "units");
+
+            gameWindow.appendText("");
 
             // Affiche la description de la salle de départ
             //gameWindow.appendText("--- " + player.getCurrentLocation().getTitle() + " ---\n");
