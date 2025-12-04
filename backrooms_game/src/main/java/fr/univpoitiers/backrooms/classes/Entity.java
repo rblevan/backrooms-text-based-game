@@ -12,9 +12,8 @@ public abstract class Entity {
 	private String description;
 	private int attack;
 	private String name;
-    private Locations location;
 
-    public Entity(String name,Locations l) {
+    public Entity(String name) {
         if (name == null) {
             throw new UnsupportedOperationException("Entity(2) error : Parameter cannot be null");
         }
@@ -22,10 +21,9 @@ public abstract class Entity {
         this.name = name;
         this.attack = DEFAULT_ATTACK;
         this.description = DEFAULT_DESCRIPTION;
-        this.location = l;
     }
 
-    public Entity(String description, String name, Locations l) {
+    public Entity(String description, String name) {
         if (description == null || name == null) {
             throw new UnsupportedOperationException("Entity(3) error : Parameters cannot be null");
         }
@@ -33,10 +31,9 @@ public abstract class Entity {
         this.name = name;
         this.attack = DEFAULT_ATTACK;
         this.description = description;
-        this.location = l;
     }
 
-    public Entity(int PV, String name, int attack, String description, Locations l) {
+    public Entity(int PV, String name, int attack, String description) {
         if (description == null || name == null || PV < 0 || attack < 0) {
             throw new UnsupportedOperationException("Entity(5) error : Parameters cannot be null or negative");
         }
@@ -44,7 +41,6 @@ public abstract class Entity {
         this.name = name;
         this.attack = attack;
         this.description = description;
-        this.location = l;
     }
 
     public int getPV() {

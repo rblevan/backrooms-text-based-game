@@ -13,12 +13,18 @@ public class Locations {
 	private final String description;
     private final Map<Direction,Exits> exits;
     private Map<String,Items> items;
+    private final Map<String,Characters> characters;
 
     public Locations(String title, String description) {
         this.title = title;
         this.description = description;
         this.exits = new HashMap<>();
         this.items = new HashMap<>();
+        this.characters = new HashMap<>();
+    }
+
+    public Map<String, Characters> getCharacters() {
+        return characters;
     }
 
     public String getDescription() {
@@ -55,6 +61,18 @@ public class Locations {
     }
 
     public void removeItem(Items item) {
-        this.items.remove(item);
+        this.items.remove(item.getName());
+    }
+
+    public void addCharacter(Characters character){
+        this.characters.put(character.getName(),character);
+    }
+
+    public Characters getCharacterByName(String name){
+        return this.characters.get(name);
+    }
+
+    public void removeCharacter(Characters character){
+        this.characters.remove(character.getName());
     }
 }

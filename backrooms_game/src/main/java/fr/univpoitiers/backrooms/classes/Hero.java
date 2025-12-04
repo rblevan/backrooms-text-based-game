@@ -9,7 +9,7 @@ public class Hero extends Entity {
     }
 
     public Hero(int PV, String name, int attack, String description, Locations location, Backpack backpack){
-        super(PV, name, attack, description, location);
+        super(PV, name, attack, description);
         this.backpack = backpack;
     }
 

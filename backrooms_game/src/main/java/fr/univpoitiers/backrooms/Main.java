@@ -143,6 +143,23 @@ public class Main {
 
             realWorld.addItem(new Spells("REALITY_ANCHOR", 1, "A spell stabilizing your presence in the real world."));
 
+            Characters lurker = new Characters(35,"The Lurker",5, "A tall, thin creature that stalks silently from the shadows.");
+
+            Characters redHands = new Characters(50, "The Red Hands", 3, "A burned electrical humanoid with crackling fingers.");
+
+            Characters drownedMaiden = new Characters(60, "The Drowned Maiden", 4, "A drowned woman dripping black water, able to pull victims into unseen depths.");
+
+            Characters crawlingChoir = new Characters(80, "The Crawling Choir", 6, "A mass of twisted bodies on the ceiling, whispering in maddening harmony.");
+
+            Characters facelessCaretaker = new Characters(70, "The Faceless Caretaker", 4, "A silent hotel butler with no face, enforcing unknown rules with violent precision.");
+
+            level1.addCharacter(lurker);
+            level3.addCharacter(redHands);
+            level7.addCharacter(drownedMaiden);
+            level8.addCharacter(crawlingChoir);
+            level5.addCharacter(facelessCaretaker);
+
+
             // --- 3. Initialisation du Joueur et du Jeu ---
 
             // Initialisation du joueur : NOM + Position de départ (Level 0)

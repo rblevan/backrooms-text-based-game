@@ -3,10 +3,7 @@ package fr.univpoitiers.backrooms.classes;
 import fr.univpoitiers.backrooms.enumeration.Direction;
 
 import javax.swing.*;
-import java.util.Arrays;
-import java.util.List;
-import java.util.ArrayList;
-import java.util.Map;
+import java.util.*;
 
 class CommandWords {
     private static final String[] VALID_COMMANDS = {
@@ -93,44 +90,79 @@ public class Commands {
     }
 
     private String look(String[] args) {
-    if (args.length == 0) {
-        String description = this.currentLocation.getDescription();
-        Map<String,Items> items = this.currentLocation.getItems();
 
-        String itemsDescription = "";
-        if (!items.isEmpty()) {
+        // --- 1. LOOK sans argument : description complète ---
+        if (args.length == 0) {
+
+            String description_location = this.currentLocation.getDescription();
+            Map<String, Items> items = this.currentLocation.getItems();
+            Map<String, Characters> characters = this.currentLocation.getCharacters();
+
+            String itemsDescription;
+            String charactersDescription;
+
+            // Affichage des items
+            if (!items.isEmpty()) {
+                List<String> itemNames = new ArrayList<>();
+                List<Integer> itemVolumes = new ArrayList<>();
+                for (Items item : items.values()) {
+                    itemNames.add(item.getName());
+                    itemVolumes.add(item.getVolume());
+                }
+                itemsDescription = "You see the following items: " + String.join(", ", itemNames) + ". Their volumes are : " + itemVolumes.toString() + ".";
+
+            } else {
+                itemsDescription = "There are no notable items here.";
+            }
+
+            // Affichage des personnages
+            if (!characters.isEmpty()) {
+                List<String> characterNames = new ArrayList<>();
+                for (Characters character : characters.values()) {
+                    characterNames.add(character.getName());
+                }
+                charactersDescription = "You see the following characters: " + String.join(", ", characterNames) + ".";
+            } else {
+                charactersDescription = "There are no notable characters here.";
+            }
+
+            return description_location + "\n" + itemsDescription + "\n" + charactersDescription;
+        }
+        // --- 2. LOOK [item] : décrire un objet spécifique ---
+        String objectToLookAtName = args[0];
+        Items targetItem = null;
+
+        if (objectToLookAtName.equalsIgnoreCase("backpack")) {
+            List<Items> items = this.player.getBackpack().getItems();
+
+            if (items.isEmpty()) {
+                return "Your backpack is empty.";
+            }
+
             List<String> itemNames = new ArrayList<>();
-            for (Items item : items.values()) {
+            for (Items item : items) {
                 itemNames.add(item.getName());
             }
-            itemsDescription = "You can also see: " + String.join(", ", itemNames) + ".";
-        } else {
-            itemsDescription = "There are no notable objects here.";
+
+            return "Inside your backpack, you see: " + String.join(", ", itemNames) + ". Your backpack is currently using " + this.player.getBackpack().getUsedVolume() + " out of " + this.player.getBackpack().getCapacityMax() + " units of space.";
         }
 
-        return description + "\n" + itemsDescription;
-    }
+        // Chercher dans la pièce
+        targetItem = this.currentLocation.getItemByName(objectToLookAtName);
 
-    // Regarder un objet spécifique (LOOK [objet])
-    String objectToLookAtName = args[0];
-    Items targetItem = null;
+        // Sinon chercher dans le sac du joueur
+        if (targetItem == null) {
+            targetItem = this.player.getBackpack().getItemByName(objectToLookAtName);
+        }
 
-    // Chercher dans l'emplacement actuel
-    targetItem = this.currentLocation.getItemByName(objectToLookAtName);
+        // Si trouvé
+        if (targetItem != null) {
+            return targetItem.getDescription() + "\nThe volume of this item is " + targetItem.getVolume() + " units.";
+        }
 
-    // Si pas trouvé, chercher dans l'inventaire du joueur
-    if (targetItem == null) {
-        // Cette méthode doit être implémentée dans la classe de l'inventaire/sac à dos
-        targetItem = this.player.getBackpack().getItemByName(objectToLookAtName);
-    }
-
-    // Si l'objet est trouvé, utiliser sa méthode getDescription()
-    if (targetItem != null) {
-        return targetItem.getDescription();
-    } else {
+        // Aucun objet trouvé
         return "You don't see " + objectToLookAtName + " here or in your backpack.";
     }
-}
 
     private String attack(String[] args) {
         if (args.length == 0) {
