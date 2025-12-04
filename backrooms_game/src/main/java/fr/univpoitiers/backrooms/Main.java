@@ -3,7 +3,7 @@ package fr.univpoitiers.backrooms;
 import fr.univpoitiers.backrooms.classes.*;
 import fr.univpoitiers.backrooms.enumeration.Direction;
 
-import javax.swing.SwingUtilities;
+import javax.swing.*;
 import java.util.Random;
 
 
@@ -162,17 +162,31 @@ public class Main {
 
             // --- 3. Initialisation du Joueur et du Jeu ---
 
+            String playerName = JOptionPane.showInputDialog(
+                    null,
+                    "Enter your name:",
+                    "Backrooms - Character Creation",
+                    JOptionPane.QUESTION_MESSAGE
+            );
+
+            if (playerName == null || playerName.trim().isEmpty()) {
+                playerName = "Anonymous";
+            }
+
             // Initialisation du joueur : NOM + Position de départ (Level 0)
             Backpack backpack = new Backpack("Blue backpack","A standard backpack", 120);
-            Hero player = new Hero(10,"Anonyme",20, "beautiful man or woman", level0, backpack); // Nécessite un constructeur Hero(String name, Locations startLocation)
+            Hero player = new Hero(playerName, 10,"Everyman",20, "beautiful man or woman", level0, backpack); // Nécessite un constructeur Hero(String name, Locations startLocation)
 
             Commands commandProcessor = new Commands(player, level0); // Le processeur de commandes a besoin du joueur
             GameWindow gameWindow = new GameWindow(commandProcessor);
 
             // --- 4. Affichage Initial ---
 
-            gameWindow.appendText("Welcome to the Backrooms.\n");
+            gameWindow.appendText("Welcome " + player.getUsername() + " to the Backrooms.\n");
             gameWindow.appendText("You find yourself in a strange place...\n\n");
+            gameWindow.appendText("You check your backpack. The faint rustle of the fabric echoes… but there’s nothing inside.\n\n");
+
+            gameWindow.appendText("");
 
             // Affiche la description de la salle de départ
             //gameWindow.appendText("--- " + player.getCurrentLocation().getTitle() + " ---\n");
