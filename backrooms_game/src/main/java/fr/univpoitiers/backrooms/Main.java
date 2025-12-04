@@ -12,18 +12,18 @@ public class Main {
     private static final Random random = new Random();
 
     public static void main(String[] args) {
-        SwingUtilities.invokeLater(() -> { // Début du bloc lambda SwingUtilities
+        SwingUtilities.invokeLater(() -> { // Start of the SwingUtilities lambda block
 
-            // --- 1. Instanciation des Niveaux (Locations) ---
+            // --- 1. Instantiation of Levels (Locations) ---
 
-            // Création des objets de destination spéciaux
-            Locations realWorld = new Locations("Real World", "Vous avez réussi à revenir à la réalité. Mais pour combien de temps ?");
+            // Creation of special destination objects
+            Locations realWorld = new Locations("Real World", "You managed to return to reality. But for how long?");
 
             // Level -1 : Grey Corridor (Unsafe)
             String descM1 = "You have entered a long, straight hallway. The air is immediately glacial, chilling you to the bone. This place is known as 'The Negative Hub'.";
             Locations levelMinus1 = new Locations("Level -1 : Grey Corridor", descM1);
 
-            // Level 0 : Lobby (Safe - Point de départ)
+            // Level 0 : Lobby (Safe - Starting Point)
             String desc0 = "You wake up in an endless maze of yellow-tinted rooms, dimly lit by flickering fluorescent lights that hum with an unbearable buzz. The air smells faintly of mold and electricity.";
             Locations level0 = new Locations("Level 0 : Lobby", desc0);
 
@@ -64,17 +64,17 @@ public class Main {
             Locations level9 = new Locations("Level 9 : The Suburbs", desc9);
 
 
-            // --- 2. Connexion des Exits (Retablies et Complétées) ---
+            // --- 2. Connecting the Exits (Restored and Completed) ---
 
             // Level -1 (Grey Corridor)
-            levelMinus1.addExit(Direction.WEST, new Exits(levelMinus1, "Return to the endless corridor", false)); // Retour au Level 0
+            levelMinus1.addExit(Direction.WEST, new Exits(levelMinus1, "Return to the endless corridor", false)); // Return to Level 0
             levelMinus1.addExit(Direction.NORTH, new Exits(level1, "A wooden door leading to Level 1", false));
-            levelMinus1.addExit(Direction.SOUTH,  new Exits(level3, "A wooden door leading to Level 3", false));
+            levelMinus1.addExit(Direction.SOUTH, 	new Exits(level3, "A wooden door leading to Level 3", false));
             levelMinus1.addExit(Direction.EAST, new Exits(level0, "A wooden door leading to Level 0", false));
 
             // Level 0 (Lobby)
             level0.addExit(Direction.NORTH, new Exits(level1, "Staircase going up to Level 1", false));
-            level0.addExit(Direction.SOUTH, new Exits(levelMinus1, "A glitching area leading to Level -1", false)); // CONNEXION RETABLIE
+            level0.addExit(Direction.SOUTH, new Exits(levelMinus1, "A glitching area leading to Level -1", false)); // CONNECTION RESTORED
 
             // Level 1 (Living Area)
 
@@ -87,30 +87,30 @@ public class Main {
             level2.addExit(Direction.EAST, new Exits(level4, "Old corridor toward Level 4", false));
 
             // Level 3 (Electrical Station)
-            level3.addExit(Direction.NORTH,  new Exits(level4, "Elevator to Level 4", false));
-            level3.addExit(Direction.EAST,  new Exits(level5, "Rare wooden door to Level 5", false));
+            level3.addExit(Direction.NORTH, 	new Exits(level4, "Elevator to Level 4", false));
+            level3.addExit(Direction.EAST, 	new Exits(level5, "Rare wooden door to Level 5", false));
 
             // Level 4 (Abandoned Office)
             level4.addExit(Direction.NORTH, new Exits(level5, "Stairs up to Level 5", false));
             level4.addExit(Direction.SOUTH, new Exits(level6, "Stairs down to Level 6", false));
 
             // Level 5 (Terror Hotel)
-            level5.addExit(Direction.NORTH,  new Exits(level6, "Boiler room to Level 6", false));
+            level5.addExit(Direction.NORTH, 	new Exits(level6, "Boiler room to Level 6", false));
 
             // Level 6 (Lights Out)
             level6.addExit(Direction.SOUTH, new Exits(level7, "Hole leading to Level 7", false));
 
             // Level 7 (Thalassophobia)
-            level7.addExit(Direction.NORTH,  new Exits(level8, "Cave opening to Level 8", false));
+            level7.addExit(Direction.NORTH, 	new Exits(level8, "Cave opening to Level 8", false));
 
             // Level 8 (Cave System)
-            level8.addExit(Direction.SOUTH,  new Exits(level9, "Pitfall to Level 9", false));
+            level8.addExit(Direction.SOUTH, 	new Exits(level9, "Pitfall to Level 9", false));
             level8.addExit(Direction.WEST, new Exits(level2, "Vent leading back to Level 2", false));
 
             // Level 9 (The Suburbs)
             level9.addExit(Direction.EAST, new Exits(realWorld, "Golden door to real world", false));
 
-            //initialisation d'items dans le jeu
+            // Initialization of items in the game
 
             level0.addItem(new Food("ALMOND_WATER", 1, "Sweet, refreshing and calming.", 20));
             level0.addItem(new Food("ENERGY_BAR", 1, "A dense bar full of calories.", 10));
@@ -160,7 +160,7 @@ public class Main {
             level5.addCharacter(facelessCaretaker);
 
 
-            // --- 3. Initialisation du Joueur et du Jeu ---
+            // --- 3. Initialization of Player and Game ---
 
             String playerName = JOptionPane.showInputDialog(
                     null,
@@ -173,14 +173,14 @@ public class Main {
                 playerName = "Anonymous";
             }
 
-            // Initialisation du joueur : NOM + Position de départ (Level 0)
+            // Initialization of the player: NAME + Starting position (Level 0)
             Backpack backpack = new Backpack("Blue backpack","A standard backpack", 120);
-            Hero player = new Hero(playerName, 100,"Everyman",20, "an ordinary person who has lived a quiet, unremarkable life—working, waiting, hoping, repeating the same familiar routines day after day.\n\n", backpack, level0); // Nécessite un constructeur Hero(String name, Locations startLocation)
+            Hero player = new Hero(playerName, 100,"Everyman",20, "an ordinary person who has lived a quiet, unremarkable life—working, waiting, hoping, repeating the same familiar routines day after day.\n\n", backpack, level0); // Requires a Hero(String name, Locations startLocation) constructor
 
-            Commands commandProcessor = new Commands(player, player.getLocation()); // Le processeur de commandes a besoin du joueur
+            Commands commandProcessor = new Commands(player, player.getLocation()); // The command processor needs the player
             GameWindow gameWindow = new GameWindow(commandProcessor);
 
-            // --- 4. Affichage Initial ---
+            // --- 4. Initial Display ---
 
             gameWindow.appendText("Welcome " + player.getUsername().toUpperCase() + " to the Backrooms.\n");
             gameWindow.appendText("You awaken as " + player.getName() + ", " + player.getDescription() + player.getLocation().getDescription() + ".\n\n");
@@ -189,7 +189,7 @@ public class Main {
 
             gameWindow.appendText("");
 
-            // Affiche la description de la salle de départ
+            // Displays the starting room's description
             //gameWindow.appendText("--- " + player.getCurrentLocation().getTitle() + " ---\n");
             //gameWindow.appendText(player.getCurrentLocation().getDescription() + "\n");
 
