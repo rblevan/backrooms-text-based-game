@@ -13,7 +13,7 @@ public class Weapon extends Items {
         return this.damage;
     }
 
-    public void Attack (Entity entity){
+    public void attack (Entity entity){
         entity.setPV(entity.getPV() - this.damage);
     }
 
@@ -23,7 +23,10 @@ public class Weapon extends Items {
     }
 
     @Override
-    public String useWith(Items target, Hero player) {
-        return "";
+    public String use(Hero player, Entity target) {
+        attack(target);
+        return "You strike " + target.getName() + " with your " + this.getName() +
+                ", dealing " + this.getDamage() + " damage!";
     }
+
 }

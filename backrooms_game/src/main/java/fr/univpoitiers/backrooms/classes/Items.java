@@ -29,7 +29,7 @@ public abstract class Items {
 
     public abstract String use(Hero player);
 
-    public String useWith(Items target, Hero player) {
-        return "Nothing interesting happens when you use " + this.getName() + " with " + target.getName() + ".";
-    }
+    public abstract String use(Hero player, Entity target);
+
+
 }

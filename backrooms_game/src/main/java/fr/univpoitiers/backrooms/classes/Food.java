@@ -16,11 +16,12 @@ public class Food extends Items {
     @Override
     public String use(Hero player) {
         player.setPV(player.getPV() + this.getHealPoints());
-        return player.getName() + "has been healed by " + this.getHealPoints() + " points.";
+        player.getBackpack().removeItem(this);
+        return player.getName() + " has been healed by " + this.getHealPoints() + " points.";
     }
 
     @Override
-    public String useWith(Items target, Hero player) {
-        return "Nothing interesting happens when you use " + this.getName() + " with " + target.getName() + ".";
+    public String use(Hero player, Entity target) {
+        return "";
     }
 }
