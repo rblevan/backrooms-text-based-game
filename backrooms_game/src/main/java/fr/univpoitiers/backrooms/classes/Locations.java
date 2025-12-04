@@ -69,7 +69,12 @@ public class Locations {
     }
 
     public Characters getCharacterByName(String name){
-        return this.characters.get(name);
+        for (Characters character : this.characters.values()) {
+            if (character.getName().equalsIgnoreCase(name)) {
+                return character;
+            }
+        }
+        return null;
     }
 
     public void removeCharacter(Characters character){

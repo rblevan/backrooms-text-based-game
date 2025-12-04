@@ -7,7 +7,7 @@ import java.util.*;
 
 class CommandWords {
     private static final String[] VALID_COMMANDS = {
-            "GO", "HELP", "LOOK", "ATTACK", "TAKE", "USE", "QUIT"
+            "GO", "HELP", "LOOK", "ATTACK", "TAKE", "USE", "QUIT", "STATUS"
     };
 
     public static List<String> getValidCommands() {
@@ -58,14 +58,14 @@ public class Commands {
                 return help();
             case "LOOK":
                 return look(args);
-            case "ATTACK":
-                return attack(args);
             case "TAKE":
                 return take(args);
             case "USE":
                 return use(args);
             case "QUIT":
                 return quit();
+            case "STATUS":
+                return status();
             default:
                 return "Internal execution error.";
         }
@@ -164,14 +164,6 @@ public class Commands {
         return "You don't see " + objectToLookAtName + " here or in your backpack.";
     }
 
-    private String attack(String[] args) {
-        if (args.length == 0) {
-            return "Attack what?";
-        }
-        String targetName = args[0];
-        // TODO: Find the entity named 'targetName' and attack it.
-        return "You attack " + targetName + "! (Not implemented)";
-    }
 
     private String take(String[] args) {
         if (args.length == 0) {
@@ -196,31 +188,54 @@ public class Commands {
         if (args.length == 0) {
             return "Use what?";
         }
-        String itemName1 = args[0];
 
-        if (args.length == 1) {
-            Items itemToUse = player.getBackpack().getItemByName(itemName1);
-            if (itemToUse == null) {
-                return "You don't have a " + itemName1 + ".";
-            }
-            return itemToUse.use(player);
+        String itemName = args[0];
+        Items item = player.getBackpack().getItemByName(itemName);
+
+        if (item == null) {
+            return "You don't have a " + itemName + ".";
         }
 
-        String itemName2 = args[1];
-        Items item1 = player.getBackpack().getItemByName(itemName1);
-        Items item2 = player.getBackpack().getItemByName(itemName2);
-
-        if (item1 == null) {
-            return "You don't have a " + itemName1 + ".";
-        }
-        if (item2 == null) {
-            return "You don't have a " + itemName2 + ".";
+        // --- Food : s'utilise seul ---
+        if (item instanceof Food) {
+            return ((Food) item).use(player); // Heal + retire du sac
         }
 
-        return item1.useWith(item2, player);
+        // --- Les autres items nécessitent une cible ---
+        if (args.length < 2) {
+            return "You need to specify a target.";
+        }
+
+        String targetName = args[1];
+        Entity target = currentLocation.getCharacterByName(targetName);
+
+        if (target == null) {
+            return "There is no " + targetName + " here.";
+        }
+
+        // --- Weapon : attaque sur cible ---
+        if (item instanceof Weapon) {
+            return ((Weapon) item).use(player, target);
+        }
+
+        // --- Spells : sort lancé sur cible ---
+        return ((Spells) item).use(player, target);
     }
 
     private String quit() {
         return "QUIT_GAME";
+    }
+
+    private String status(){
+        int hp = player.getPV();
+        int maxHp = player.getMax_hp();
+
+        if (hp == maxHp) {
+            return "You feel fully healthy. No need to heal for now.";
+        } else if (hp > maxHp / 2) {
+            return "You have some scratches, but nothing serious. (" + hp + "/" + maxHp + ")";
+        } else {
+            return "You're badly injured! You should heal soon. (" + hp + "/" + maxHp + ")";
+        }
     }
 }

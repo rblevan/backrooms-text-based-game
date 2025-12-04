@@ -9,17 +9,18 @@ public class WeaponTest {
 
     @Test
     void testWeaponCreation() {
-        Weapon weapon = new Weapon("Sword", 5, 20);
+        Weapon weapon = new Weapon("Sword", 5, "sword", 20);
         assertNotNull(weapon);
         assertEquals("Sword", weapon.getName());
         assertEquals(5, weapon.getVolume());
         assertEquals(20, weapon.getDamage());
+        assertEquals("sword", weapon.getDescription());
     }
 
     @Test
     void testWeaponCreationWithInvalidName() {
         try {
-            new Weapon(null, 5, 20);
+            new Weapon(null, 5,null,20);
         } catch (UnsupportedOperationException e) {
             assertEquals("Weapon(4) error : Parameters cannot be null or negative", e.getMessage());
         }
@@ -28,7 +29,7 @@ public class WeaponTest {
     @Test
     void testWeaponCreationWithNegativeVolume() {
         try {
-            new Weapon("Sword", -5, 20);
+            new Weapon("Sword", -5, "sword",20);
         } catch (UnsupportedOperationException e) {
             assertEquals("Weapon(4) error : Parameters cannot be null or negative", e.getMessage());
         }
@@ -37,7 +38,7 @@ public class WeaponTest {
     @Test
     void testWeaponCreationWithNegativeDamage() {
         try {
-            new Weapon("Sword", 5, -20);
+            new Weapon("Sword", 5, "sword", -20);
         } catch (UnsupportedOperationException e) {
             assertEquals("Weapon(4) error : Parameters cannot be null or negative", e.getMessage());
         }

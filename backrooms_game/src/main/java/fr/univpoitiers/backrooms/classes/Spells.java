@@ -2,25 +2,9 @@ package fr.univpoitiers.backrooms.classes;
 
 public class Spells extends Items {
 
-	private String Action;
-
-	public void getAction() {
-		// TODO - implement Spells.getAction
-		throw new UnsupportedOperationException();
-	}
-
     public Spells(String name, int volume, String description) {
         super(name, volume, description);
     }
-
-	/**
-	 * 
-	 * @param Action
-	 */
-	public void setAction(String Action) {
-		// TODO - implement Spells.setAction
-		throw new UnsupportedOperationException();
-	}
 
     @Override
     public String getName() {
@@ -37,14 +21,19 @@ public class Spells extends Items {
         return null;
     }
 
-    @Override
-    public String use(Hero player) {
-        return null;
+    public String cast(Hero player) {
+        return "You cast " + this.getName() + ". " + this.getDescription();
     }
 
     @Override
-    public String useWith(Items target, Hero player) {
-        return null;
+    public String use(Hero player) {
+        return "";
     }
+
+    @Override
+    public String use(Hero player, Entity target) {
+        return this.cast(player) + " on " + target.getName();
+    }
+
 
 }

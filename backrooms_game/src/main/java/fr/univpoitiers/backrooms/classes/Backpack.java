@@ -95,8 +95,9 @@ public class Backpack extends Items {
     }
 
     @Override
-    public String useWith(Items target, Hero player) {
+    public String use(Hero player, Entity target) {
         return "";
     }
+
 
 }
