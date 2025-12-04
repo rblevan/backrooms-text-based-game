@@ -75,7 +75,6 @@ public class Commands {
         }
     }
 
-
     //GO command, to go in a specified direction
     private String go(String[] args) {
         if (args.length == 0) {
@@ -219,7 +218,7 @@ public class Commands {
         if (player.getBackpack().addItem(itemToTake)) {
             currentLocation.removeItem(itemToTake);
             return "You take the " + itemToTake.getName() + ".";
-        } 
+        }
         //if the backpack is full
         else {
             return "Your backpack is full.";
