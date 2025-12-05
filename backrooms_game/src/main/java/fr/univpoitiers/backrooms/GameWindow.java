@@ -5,9 +5,23 @@ import javax.swing.*;
 import javax.swing.text.Caret;
 import javax.swing.text.DefaultCaret;
 import java.awt.*;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 import java.util.LinkedList;
 import java.util.Queue;
 
+
+/**
+ * Represents the main Graphical User Interface (GUI) of the game.
+ * It extends JFrame to create a window simulating a retro command-line terminal.
+ * <p>
+ * Key features:
+ * <ul>
+ * <li>Displays game text with a "typewriter" effect for immersion.</li>
+ * <li>Captures user input and sends it to the {@link Commands} processor.</li>
+ * <li>Allows toggling instant text display by pressing the 'M' key.</li>
+ * </ul>
+ */
 public class GameWindow extends JFrame {
 
     private final JTextArea textArea;
@@ -15,10 +29,17 @@ public class GameWindow extends JFrame {
     private Timer typewriterTimer;
     private final Commands commands;
 
+    private boolean instantTextEnabled = false;
     private final Queue<String> textQueue = new LinkedList<>();
     private String currentTextToType;
     private int charIndex;
 
+    /**
+     * Constructs the Game Window and initializes all UI components.
+     * Sets up the black background, text areas, input fields, and event listeners.
+     *
+     * @param commands The {@link Commands} controller instance used to process user inputs.
+     */
     public GameWindow(Commands commands) {
         this.commands = commands;
 
@@ -99,7 +120,29 @@ public class GameWindow extends JFrame {
             }
         });
 
-        int delay = 40;
+        inputField.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyPressed(KeyEvent e) {
+                if (e.getKeyCode() == KeyEvent.VK_M) {
+                    instantTextEnabled = !instantTextEnabled;
+                    String mode = instantTextEnabled ? "ENABLED" : "DISABLED";
+
+                    if (instantTextEnabled && typewriterTimer.isRunning()) {
+                        typewriterTimer.stop();
+                        if (currentTextToType != null && charIndex < currentTextToType.length()) {
+                            textArea.append(currentTextToType.substring(charIndex));
+                        }
+                        while (!textQueue.isEmpty()) {
+                            textArea.append(textQueue.poll());
+                        }
+                        textArea.setCaretPosition(textArea.getDocument().getLength());
+                        inputField.setEditable(true);
+                    }
+                }
+            }
+        });
+
+        int delay = 30;
         typewriterTimer = new Timer(delay, e -> {
             // Check if we have finished the current text
             if (currentTextToType == null || charIndex >= currentTextToType.length()) {
@@ -108,6 +151,8 @@ public class GameWindow extends JFrame {
 
                 if (currentTextToType == null) {
                     typewriterTimer.stop();
+                    inputField.setEditable(true);
+                    inputField.requestFocusInWindow();
                     return;
                 }
             }
@@ -121,14 +166,29 @@ public class GameWindow extends JFrame {
         setVisible(true);
     }
 
+    /**
+     * Appends text to the game's display area.
+     * <p>
+     * If "Instant Text" mode is enabled, the text appears immediately.
+     * Otherwise, the text is added to a queue and displayed character-by-character
+     * by a Timer to simulate a typing effect.
+     *
+     * @param text The string to be displayed in the terminal window.
+     */
     public void appendText(final String text) {
         if (text == null || text.isEmpty()) {
             return;
         }
-        textQueue.add(text);
 
-        if (!typewriterTimer.isRunning()) {
-            typewriterTimer.start();
+        if (instantTextEnabled) {
+            textArea.append(text);
+            textArea.setCaretPosition(textArea.getDocument().getLength());
+        } else {
+            textQueue.add(text);
+            if (!typewriterTimer.isRunning()) {
+                inputField.setEditable(false);
+                typewriterTimer.start();
+            }
         }
     }
 }

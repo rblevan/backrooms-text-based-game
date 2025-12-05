@@ -5,6 +5,10 @@ import fr.univpoitiers.backrooms.enumeration.Direction;
 import javax.swing.*;
 import java.util.*;
 
+/**
+ * Helper class that holds the list of all valid command words.
+ * It is used to validate user input before processing.
+ */
 class CommandWords {
     private static final String[] VALID_COMMANDS = {
             "GO", "HELP", "LOOK", "ATTACK", "TAKE", "USE", "QUIT", "HEALTH", "ME"
@@ -24,18 +28,36 @@ class CommandWords {
     }
 }
 
+/**
+ * This class is the main control logic for the game.
+ * It parses user input, executes the corresponding commands, and modifies the game state.
+ * It acts as the controller between the User Interface and the Model (Hero, Locations, Items).
+ */
 public class Commands {
     private final String commandList = String.join(" ", CommandWords.getValidCommands());
 
     private Hero player;
     private Locations currentLocation;
 
-
+    /**
+     * Initializes the command processor.
+     *
+     * @param player           The player (Hero) controlled by these commands.
+     * @param startingLocation The initial location of the player.
+     */
     public Commands(Hero player, Locations startingLocation) {
         this.player = player;
         this.currentLocation = startingLocation;
     }
 
+    /**
+     * Main method to process a line of input typed by the user.
+     * It parses the input into a command word and arguments, checks if the command is valid,
+     * and dispatches the execution to the specific method (e.g., go, look, take).
+     *
+     * @param input The raw string entered by the user.
+     * @return A string containing the game's response to be displayed in the UI.
+     */
     public String processCommand(String input) {
         String trimmedInput = input.trim();
         if (trimmedInput.isEmpty()) {
@@ -75,7 +97,13 @@ public class Commands {
         }
     }
 
-    //GO command, to go in a specified direction
+    /**
+     * Handles the "GO" command.
+     * Moves the player to a neighboring room if the direction is valid and an exit exists.
+     *
+     * @param args The arguments of the command (expected: [direction]).
+     * @return A message describing the result of the movement or an error message.
+     */
     private String go(String[] args) {
         if (args.length == 0) {
 
@@ -92,13 +120,26 @@ public class Commands {
         }
     }
 
-    //HELP command, to display a list of available commands
+    /**
+     * Handles the "HELP" command.
+     * Displays a list of all valid command verbs to assist the player.
+     *
+     * @return A string listing available commands.
+     */
     private String help() {
         return "Available commands are: " + commandList;
     }
 
-    //LOOK commands, to display a description of the environment and the items if called without arguments
-    //               to display a description of a specific item or character if called with an argument
+    /**
+     * Handles the "LOOK" command.
+     * Contextual behavior:
+     * 1. No arguments: Describes the current room, visible items, and characters.
+     * 2. "backpack": Lists items in the player's inventory.
+     * 3. [item name]: Inspects a specific item in the room or in the backpack.
+     *
+     * @param args The arguments (optional).
+     * @return The description requested.
+     */
     private String look(String[] args) {
 
         // --- 1. without argument : complete description ---
@@ -174,7 +215,13 @@ public class Commands {
         return "You don't see " + objectToLookAtName + " here or in your backpack.";
     }
 
-    //ATTACK command, to attack a target with a weapon
+    /**
+     * Handles the "ATTACK" command.
+     * Allows the player to attack a character using a weapon from their inventory.
+     *
+     * @param args The arguments (expected: [weapon name] [target name]).
+     * @return A message describing the outcome of the attack.
+     */
     private String attack(String[] args) {
         if (args.length < 2) {
             return "Attack what with what? Usage: ATTACK [weapon] [target]";
@@ -204,7 +251,14 @@ public class Commands {
         return ((Weapon) item).use(player, target);
     }
 
-    //TAKE command, to take an item from the current location
+    /**
+     * Handles the "TAKE" command.
+     * Moves an item from the current room to the player's backpack.
+     * Checks if the item exists and if the backpack has enough capacity.
+     *
+     * @param args The arguments (expected: [item name]).
+     * @return A success message or an error (e.g., "Backpack is full").
+     */
     private String take(String[] args) {
         //no argument, return error message
         if (args.length == 0) {
@@ -227,7 +281,15 @@ public class Commands {
         }
     }
 
-    //USE command, to use an item on a target or yourself
+    /**
+     * Handles the "USE" command.
+     * Uses an item from the inventory.
+     * - Food: Consumed immediately to heal the player.
+     * - Spells: Requires a target argument to be cast.
+     *
+     * @param args The arguments (expected: [item name] or [item name] [target]).
+     * @return The result of the item usage.
+     */
     private String use(String[] args) {
         //no argument, return error message
         if (args.length == 0) {
@@ -262,12 +324,21 @@ public class Commands {
         return ((Spells) item).use(player, target);
     }
 
-    //QUIT command, to quit the game
+    /**
+     * Handles the "QUIT" command.
+     *
+     * @return A special signal string "QUIT_GAME" intercepted by the UI to close the window.
+     */
     private String quit() {
         return "QUIT_GAME";
     }
 
-    //HEALTH command, to display the player's health
+    /**
+     * Handles the "HEALTH" command.
+     * Provides a descriptive status of the player's current Hit Points (PV).
+     *
+     * @return A status message describing the player's physical condition.
+     */
     private String health(){
         int hp = player.getPV();
         int maxHp = player.getMax_hp();
@@ -282,7 +353,12 @@ public class Commands {
         }
     }
 
-    //ME command, to display the player's namen and description
+    /**
+     * Handles the "ME" command.
+     * Provides information about the player's name and description.
+     *
+     * @return A message describing the player's identity.
+     */
     private String me(){
         return "your name is " + player.getName() + " and " + player.getDescription();
     }
