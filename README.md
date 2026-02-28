@@ -52,18 +52,6 @@ Le projet respecte une architecture modulaire et une hiérarchie de classes stri
 
 ---
 
-## 📸 Aperçu (Gameplay)
-
-| Interface de Jeu |
-|:---:|
-| <img src="./screenshots/gameplay.png" width="600"> |
-
-*(L'interface permet de lire la description des lieux et de taper ses commandes en bas de fenêtre)*
-
----
-
-## 🛠️ Installation et Lancement
-
 ### Prérequis
 * Java JDK 17 ou supérieur
 * Maven
